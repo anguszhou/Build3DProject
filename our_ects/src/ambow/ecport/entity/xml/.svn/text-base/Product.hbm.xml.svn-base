@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ambow.ects.entity">
+    <class name="Product" table="product">
+    	<id name="id" column="product_id">
+    		<generator class="native"/>
+    	</id>
+    	<property name="name"></property>
+    	<property name="model"></property>
+    	<property name="images"></property>
+    	<property name="service"></property>
+    	<property name="cpu"></property>
+    	<property name="board"></property>    	
+    	<property name="color"></property>
+    	<property name="disk"></property>
+    	<property name="display"></property>
+    	<property name="memory"></property>
+    	<property name="type"></property>
+    	<property name="descriptions"></property>
+    	<property name="saleVolume"></property>
+    	<property name="size"></property>
+    	<property name="basePrice"></property>
+    	<property name="discountPrice"></property>
+    	<property name="promoted"></property>
+    	<property name="discounted"></property> 
+    	<property name="time"></property>   	
+    	<many-to-one name="category" class="Category" cascade="all" column="category_id" lazy="false"/>
+    	 
+    	 <one-to-one name="starRating" 
+                   class="StarRating" 
+                   cascade="all"/>
+                   
+        <set name="comments"           inverse="true"    lazy="false" cascade="all"     > 
+			<key column="product_id"/>
+			<one-to-many class="Comment"/> 
+        </set>
+    </class>
+</hibernate-mapping>

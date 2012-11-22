@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<title>Consultant</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<%@ page contentType="text/html; charset=UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+	<SCRIPT src="js/flashobj.js" type=text/javascript></SCRIPT>
+	<script type="text/javascript" src="js/home.js"></script>
+</head>
+
+<body>
+	<div id="mainPan">
+		<div class="header">
+		<jsp:include page="header.jsp"></jsp:include>
+		</div>
+		<div class="left">
+			<jsp:include page="left1.jsp"></jsp:include>
+		</div>
+  		
+ 	<div class="middle">
+	  <div id="middlePan">
+		  	
+			 <div class=focusFlash>
+				<div id=sasFlashFocus27></div>
+				<script>
+					var sohuFlash2 = new sohuFlash("flash/demo001.swf", "27", 522, 245, "7");
+					sohuFlash2.addParam("quality", "high");
+					sohuFlash2.addParam("wmode", "opaque");
+					sohuFlash2.addVariable("image","images/22.jpg|images/33.jpg|images/44.jpg|images/11.jpg|");
+					sohuFlash2.addVariable("url","${pageContext.request.contextPath}/productDetail.do?productId=70|${pageContext.request.contextPath}/productDetail.do?productId=20|${pageContext.request.contextPath}/productDetail.do?productId=63|${pageContext.request.contextPath}/productDetail.do?productId=144");
+					sohuFlash2.addVariable("info", "");
+					sohuFlash2.addVariable("stopTime","5000");
+					sohuFlash2.write("sasFlashFocus27");
+				</script>
+			</div>	
+			<div id="middlemorePan">
+		      <p class="textposition">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+		   		 <a href="#">more</a>
+		   </div> 
+		   <div>
+		   <table>
+			<tr>          
+				<td height="27"></td>        
+			</tr>    
+			<tr>
+				<td>
+					<table width="950" border="0" cellpadding="0" cellspacing="0">  
+						<tr>               
+				 			<td width="578">
+				 				<table border="0" cellspacing="0" 	cellpadding="0" width="555"> 
+				 					<tr>                      
+							  			<td><img src="images/ways_bank.gif" 	alt="服务渠道" title="服务渠道"/>
+									</td>                   
+									</tr>                    
+									<tr>                     
+									 	<td height="10"></td>                   
+								 	</tr>                    
+									<tr>                      
+										<td valign="top" class="tab_left_top"><a href="javascript:tabhome('a1tab_l1','3');" style="cursor:default; ">
+											<img src="images/tab_l1_over.gif" alt="花旗网上银行" title="花旗网上银行" border="0"  id="a1tab_l1" /></a>
+											<a href="javascript:tabhome('a2tab_l2','3');"><img src="images/tab_l2_normal.gif" alt="立即申请" title="立即申请" border="0" id="a2tab_l2"/></a>
+											<a href="javascript:tabhome('a3tab_l3','3');"><img src="images/tab_l3_normal.gif" alt="找到我们" title="找到我们" border="0" id="a3tab_l3"/></a>
+										</td>                   
+									</tr>		
+				 					 <tr>                      
+										<td class="tab_left_bg">
+											<table border="0" cellspacing="0" cellpadding="0" class="tab_left_bot" width="555"> 
+				 								<tr>                           
+	 												<td width="16"></td>                            
+													<td width="539" valign="top">
+														<table width="520" border="0" cellspacing="0" cellpadding="0" id="re1">  
+				 											<tr>                                  
+																<td width="318" valign="bottom" height="145"><img src="images/tab_img_l1.gif"  alt="现在，您可以随时随地在线管理您得账户。" title="现在，您可以随时随地在线管理您得账户。"/>
+																</td>                                  
+																<td width="202" valign="top">
+																	<table border="0" cellspacing="0" cellpadding="0">
+																		<tr>                                        							
+																			<td><img src="images/tab_head_l1.gif"  alt="Citibank Online - Banking without boundaries" title="Citibank Online - Banking without boundaries"></td>                                      
+																		</tr>                                      
+																		<tr>                                        
+																			<td height="10"></td>                                      
+																		</tr>                                     
+					 													<tr>                                        
+																			<td class="bluearrow_link13">
+																				<ul>                                            
+																					<li><a href="/chinese/servi	ces/account_information.htm">在线账户信息查询</a></li>                                            
+																					<li><a href="/chinese/services/payment_transfers.htm">2010年网上银行境内人民币转账免费</a></li>                                           
+								 													<li><a href="/chinese/services/citi_alert_service.htm">花旗信息提示服务</a></li>                                            
+																					<li><a href="/chinese/cbol_demo/index.html">花旗网上银行在线演示</a></li>                                         
+					 															</ul>
+																			</td>                                     
+																		</tr>									  
+																		<tr>                                        
+																			<td height="10"></td>                                      
+																		</tr>         
+																	</table>
+																</td>
+															</tr>
+				 										</table>
+				 										<table width="520" border="0" cellspacing="0" cellpadding="0" id="re2" style="display:none;">                                
+															<tr>                                  
+																<td width="318" valign="bottom" height="160">
+																	<img src="images/tab_img_l2.gif"  alt="即刻联系我们，由我们的专业人士为您服务。" title="即刻联系我们，由我们的专业人士为您服务。"/>
+																</td>                                  
+																<td width="202" valign="top">
+																	<table border="0" cellspacing="0" cellpadding="0"> 
+																		<tr>                                        
+																			<td><img src="images/tab_head_l2.gif"  alt="即刻成为花旗银行客户—享受花旗银行专业服务" title="即刻成为花旗银行客户—享受花旗银行专业服务"/>
+																			</td>                                      
+																		</tr>                                      
+																		<tr>                                        
+																			<td height="10"></td>                                      
+																		</tr>                                      
+																		<tr>                                        
+																			<td class="bluearrow_link13">
+																			<ul>                                            
+																				<li><a href="https://www.citibank.com.cn/CNGCB/apfa/cngcb/olapt/InitializeSubApp.do">立刻申请</a></li>                                            
+																				<li><a href="https://www.citibank.com.cn/CNGCB/apfa/cngcb/olapt/InitializeSubApp.do">网上预约</a></li>                                            
+																				<li><a href="https://www.citibank.com.cn/CNGCB/APPS/portal/loadPage.do?path=/info/det/contact_us.htm">业务咨询与意见反馈</a></li>                                          
+																			</ul>
+																			</td>                                      
+																		</tr>                                      
+																		<tr>                                        
+																			<td height="10"></td>                                      
+																		</tr>         
+																	</table>
+																</td>
+															</tr>
+														</table>
+														<table width="520" border="0" cellspacing="0" cellpadding="0" id="re3" style="display:none;">                                
+															<tr>                                  
+																<td width="318" height="160" valign="bottom">
+																	<img src="images/tab_img_l3.gif"  alt="随时随地找到你的花旗。" title="随时随地找到你的花旗。"/>
+																</td>                                 
+												 				<td width="202" valign="top"><table border="0" cellspacing="0" cellpadding="0">                                      
+															<tr>                                        
+																<td><img src="images/tab_head_l3.gif"  alt="你的花旗银行，我们无处不在。" title="你的花旗银行，我们无处不在。"/></td>                                     
+												 			</tr>                                      
+															<tr>                                        
+																<td height="10"></td>                                     
+												 			</tr>                                      
+															<tr>                                        
+																<td class="bluearrow_link13">
+																	<ul>                                            
+																	<li><a href="/chinese/services/atm_network.htm">花旗分行及ATM网络</a></li>                                            
+																	<li><a href="http://www.findmyciti.com/cn/index-cn-cn.jsp">用Google Map, 找到你的花旗</a></li>                                          
+																	</ul>
+																</td>                                      
+															</tr>                                    
+														</table>   
+				 									</td>
+				 								</tr>
+				 								
+				 							</table>
+				 						</td>
+				 					</tr>
+				 					
+				 				</table>
+				 			</td>
+				 		</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		   </div>
+  	
+  	</div>
+  	</div>
+  	
+		<div class="footer">
+			<jsp:include page="footer.jsp"></jsp:include>
+		</div>
+		
+	
+</div>
+</body>
+</html>

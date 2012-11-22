@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.edu.xjtu.ects.entity">
+   <class name="Category"  table="category"  >
+		<id name="category_id" column="category_id" unsaved-value="null" >
+			<generator class="native"/>
+		</id>
+		
+        <property name="name"                 column="name" ></property>
+        <property name="descriptions"                 column="descriptions" ></property>      
+        <set name="productClasses"           inverse="true"    lazy="true" cascade="all"     > 
+			<key column="category_id"/>
+			<one-to-many class="ProductClass"/> 
+        </set> 
+    </class>
+</hibernate-mapping>

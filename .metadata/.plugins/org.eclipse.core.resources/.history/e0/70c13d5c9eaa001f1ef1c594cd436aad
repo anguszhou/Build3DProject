@@ -1,0 +1,299 @@
+package xjtu.citi.impl;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import xjtu.citi.dao.ICompanyUserDao;
+import xjtu.citi.entity.CompanyUser;
+import xjtu.citi.exception.ManagerUserException;
+import xjtu.citi.util.HibernateUtils;
+
+public class CompanyUserDaoImpl implements ICompanyUserDao {
+
+	public void add(CompanyUser user) throws ManagerUserException {
+		
+		Session   session = null;
+		Transaction  tran = null;
+		try{
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			session.save(user);
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();
+			throw  new ManagerUserException(e.getMessage());
+		}finally{
+			session.close();
+		}
+	}
+
+	public void delete(CompanyUser user) throws ManagerUserException {
+		
+		Session   session = null;
+		Transaction  tran = null;
+		try{
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			session.delete(user);
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();
+			throw  new ManagerUserException(e.getMessage());
+		}finally{
+			session.close();
+		}
+	}
+
+	public Collection find(int start, int max) throws ManagerUserException {
+		
+		Session session = null;
+		Transaction tran = null;
+		Collection list = null;
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			Query query = session.createQuery(" from CompanyUser ");
+			query.setFirstResult(start);
+			query.setMaxResults(max);
+			list = query.list();
+			tran.commit();
+		} catch (Exception e) {
+			tran.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			
+		}
+		return list;
+	}
+
+	public Collection findAll() throws ManagerUserException {
+		
+		Session   session = null;
+		Transaction  tran = null;
+		Collection list = null;
+		try{
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			list = session.createQuery(" from  CompanyUser ").list();
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();
+			throw  new ManagerUserException(e.getMessage());
+		}finally{
+			session.close();			
+		}
+		return  list;
+	}
+
+	public CompanyUser findById(Integer id) throws ManagerUserException {
+		
+		Session   session = null;
+		Transaction  tran = null;
+		CompanyUser  user = null;
+		try{
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			user = (CompanyUser) session.get( CompanyUser.class, id);	
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();
+			throw  new ManagerUserException(e.getMessage());
+		}finally{
+			session.close();			
+		}
+		return  user;
+	}
+
+	public int getTotal() throws ManagerUserException {
+		
+		Session session = null;
+		Transaction tran = null;
+		int total = 0;
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			total = session.createQuery("From  CompanyUser").list().size();			
+			tran.commit();
+		} catch (Exception e) {
+			tran.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			
+		}
+		return total;
+	}
+
+	public CompanyUser login(String name, String passwd)
+			throws ManagerUserException {
+		
+		Session session = null;
+		Transaction  tran = null;
+		CompanyUser user = new CompanyUser();
+		try{
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			user=(CompanyUser) session.createQuery("from CompanyUser c where c.username=:name and c.password =:passwd").setString("name",name).setString("passwd",passwd).uniqueResult();
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();
+			throw new ManagerUserException(e.getMessage() );
+		}finally{
+			session.close();			
+		}
+		return  user;
+	}
+
+	public List login(String name) throws ManagerUserException {
+		
+		Session session = null;
+		Transaction  tran = null;
+		List userList = null;
+		try{
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			Query query = session.createQuery("select user from CompanyUser user where user.username='"+name+"'");
+			
+			userList = query.list();
+			
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();
+			throw new ManagerUserException(e.getMessage() );
+		}finally{			
+			session.close();			
+		}
+		return  userList;
+	}
+
+	public Collection search(CompanyUser user) throws ManagerUserException {
+		
+		Session session = null;
+		Transaction tran = null;
+		Collection list = null;
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			Criteria crit = session.createCriteria(CompanyUser.class);
+			
+			if (user.getName().equals("")) {
+				crit.add(Restrictions.like("name", "%"));
+			} else {
+				crit.add(Restrictions.like("name", "%" + user.getName()
+						+ "%"));
+			}
+			
+			list = crit.list();
+			tran.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tran.rollback();
+		} finally {
+			session.close();
+			
+		}
+		return list;
+	}
+
+	public void update(CompanyUser user) throws ManagerUserException {
+	
+		Session   session = null;
+		Transaction  tran = null;
+		try{
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			session.update(user);
+			System.out.println(user.getName());
+			System.out.println(user.getPassword());
+			System.out.println("更新");
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+	}
+	
+	public static void main(String[] args) {
+		ICompanyUserDao dao = new CompanyUserDaoImpl();
+		CompanyUser user = new CompanyUser();
+		
+		try
+		{
+			user = dao.login("zc1", "zc");
+		} catch (ManagerUserException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(user.getName());
+		//测试add函数		
+		/*user.setName("西安交大");
+		user.setUsername("nana");
+		user.setPassword("123");
+		user.setTaxnum("SW123");
+		try {
+			dao.add(user);
+		} catch (ManagerUserException e) {
+			
+			e.printStackTrace();
+		}*/
+		
+		//测试findById函数和update函数
+		/*try {
+			user = dao.findById(1);
+		} catch (ManagerUserException e1) {
+			
+			e1.printStackTrace();
+		}
+		user.setPassword("1234");
+		try {
+			dao.update(user);
+		} catch (ManagerUserException e) {
+			
+			e.printStackTrace();
+		}*/
+		
+		//测试findAll函数
+		/*try {
+			Collection list = dao.findAll();
+			System.out.println(list.size()+"所有的企业用户");
+		} catch (ManagerUserException e) {
+			
+			e.printStackTrace();
+		}*/
+		
+		//测试login函数
+		/*try {
+			dao.login("nana", "123");
+		} catch (ManagerUserException e) {
+			
+			e.printStackTrace();
+		}*/
+		
+		//测试delete函数
+		/*try {
+			user = dao.findById(2);
+			dao.delete(user);
+			
+		} catch (ManagerUserException e) {
+			
+			e.printStackTrace();
+		}*/
+	}
+
+}

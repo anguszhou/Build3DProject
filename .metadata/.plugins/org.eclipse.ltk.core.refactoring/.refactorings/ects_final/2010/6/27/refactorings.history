@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 4 element(s) from project &apos;ects_final&apos;&#x0D;&#x0A;- Original project: &apos;ects_final&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     6.11.doc&#x0D;&#x0A;     su ki da ka ra.txt&#x0D;&#x0A;     《长生界》TXT.txt&#x0D;&#x0A;     越境鬼医.txt" description="Delete elements" element1="WebRoot/ImagesUploaded/越境鬼医.txt" element2="WebRoot/ImagesUploaded/《长生界》TXT.txt" element3="WebRoot/ImagesUploaded/6.11.doc" element4="WebRoot/ImagesUploaded/su ki da ka ra.txt" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="4" stamp="1277791961147" subPackages="false" version="1.0"/>
+</session>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping  package="xjtu.citi.entity" >
+
+	<class name="Parameter"  table="parameter"  >
+		<id name="id" column="id"  >
+			<generator class="native"/>
+		</id>
+        <property name="cashflow"    column="cashflow" ></property>
+        <property name="registfund"   column="registfund" ></property>
+        <property name="listedcomp"   column="listedcomp" ></property>
+        <property name="corecomp"   column="corecomp" ></property>
+        <property name="ain"    column="ain" ></property>
+        <property name="aout"   column="aout" ></property>
+        <property name="bin"   column="bin" ></property>
+        <property name="bout"   column="bout" ></property>
+        <property name="time"   column="modifiedtime" ></property>
+           
+   
+    </class>
+</hibernate-mapping>

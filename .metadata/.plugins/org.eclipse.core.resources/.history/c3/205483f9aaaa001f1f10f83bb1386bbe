@@ -1,0 +1,11 @@
+package xjtu.citi.dao;
+
+import java.util.Collection;
+
+public interface ICompanyInfoDao {
+	public Collection findCore(int start, int max);
+	public int getTotal();
+	public Collection findSME(int start, int max);
+	public int getTotal2();
+	public CompanyInfo findById(int id);
+}

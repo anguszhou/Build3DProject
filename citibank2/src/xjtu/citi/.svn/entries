@@ -1,0 +1,55 @@
+9
+
+dir
+99
+http://115.154.73.71/svn/citibank/src/xjtu/citi
+http://115.154.73.71/svn/citibank
+
+
+
+2010-08-30T13:05:22.265625Z
+99
+maona
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+de1db602-942d-9641-a4ed-ef88f6255bdb
+
+xml
+dir
+
+chart
+dir
+
+impl
+dir
+
+dao
+dir
+
+doc
+dir
+
+entity
+dir
+
+util
+dir
+
+web
+dir
+
+exception
+dir
+

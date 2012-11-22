@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping  package="xjtu.citi.entity" >
+
+	<class name="CompanyUser"  table="companyuser"  >
+		<id name="id" column="id"  >
+			<generator class="native"/>
+		</id>
+        
+        <property name="name"   column="companyName" ></property>
+        <property name="taxnum"   column="taxNum" ></property>
+        <property name="username"   column="username" ></property>
+        <property name="password"   column="password" ></property>
+   
+    <many-to-one name="companyinfo" class="CompanyInfo"  column="industrytypeid" lazy="false" fetch="join"/>
+      
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping  package="xjtu.citi.entity" >
+
+	<class name="Account"  table="account"  >
+		<id name="id" column="id"  >
+			<generator class="native"/>
+		</id>
+        <property name="account"    column="account" ></property>
+        
+       
+       	<many-to-one name="companyinfo" class="CompanyInfo"  column="companyid" lazy="false"/>  
+     	
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping  package="xjtu.citi.entity" >
+
+	<class name="WarnInfo"  table="warninfo"  >
+		<id name="id" column="id"  >
+			<generator class="native"/>
+		</id>
+        <property name="time"    column="time" ></property>
+        <property name="prevalue"   column="prevalue" ></property>
+        <property name="latevalue"   column="latevalue" ></property>
+        <property name="description"   column="description" ></property>
+       
+       
+       <many-to-one name="warnpara" class="WarnParameter"  column="warnparameterid"  fetch="join"/>
+       
+       <many-to-one name="smeassess" class="SMEassessment"  column="smeassessid"  fetch="join"/>
+      
+   
+    </class>
+</hibernate-mapping>

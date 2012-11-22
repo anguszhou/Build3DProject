@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/citibank/!svn/ver/49/src/xjtu/citi/entity
+END
+Parameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/Parameter.java
+END
+UserType.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/UserType.java
+END
+CompanyInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/CompanyInfo.java
+END
+IndustryType.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/IndustryType.java
+END
+TransInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/TransInfo.java
+END
+WarnInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/WarnInfo.java
+END
+Feedback.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/Feedback.java
+END
+CompanyUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/CompanyUser.java
+END
+node.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/citibank/!svn/ver/49/src/xjtu/citi/entity/node.java
+END
+WarnParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/WarnParameter.java
+END
+BankUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/BankUser.java
+END
+SMEassessment.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/SMEassessment.java
+END
+Account.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/citibank/!svn/ver/1/src/xjtu/citi/entity/Account.java
+END

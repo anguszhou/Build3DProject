@@ -1,0 +1,168 @@
+<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@page import="edu.hit.ice.ibatis.common.*" %>
+<%@page import="java.io.File" %>
+<%@page import="java.net.MalformedURLException" %>
+<%@page import="javax.swing.JFileChooser" %>
+
+<%@ taglib uri="../../WEB-INF/struts-html.tld" prefix="html" %>
+<%@ taglib uri="../../WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="../../WEB-INF/struts-bean.tld" prefix="bean"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="<%=basePath%>public/css/focus.css">
+<script language="JavaScript1.2">
+//根据分辨率缩放窗口
+ function resize2() 
+ {var correctwidth=1024;
+ var correctheight=768;
+ if (screen.width!=correctwidth||screen.height!=correctheight){
+  document.body.style.zoom=screen.width/correctwidth;
+ }
+ }
+ 
+ 
+ 
+ function initArray() {
+  this.length = initArray.arguments.length
+  for (var i = 0; i < this.length; i++)
+  this[i+1] = initArray.arguments[i]
+  }
+
+    function checkFileType(){
+   var validExt = new initArray("sql");
+   var isValid = "false";
+   var maxLength = document.all("filename").value.length;
+   var ext = document.all("filename").value.substring(maxLength,maxLength - 3);
+   ext = ext.toLowerCase();
+
+   for (var i = 1; i < 4; i++)
+    if (ext == validExt[i]){
+     isValid = "true";
+    }
+   if (isValid == "false"){
+    alert("只能还原*.sql类型的文件");
+    
+   }
+    }
+</script>
+</head>
+
+<body onload="resize2()" oncopy="parent.fncopy()" >
+<%String dbpath=new String();
+  dbpath="C:\\";
+  if(request.getParameter("dbpath")!=null)
+   {
+    dbpath=java.net.URLDecoder.decode(request.getParameter("dbpath"),"UTF-8"); 
+   }
+  %>
+
+<table width="53%" height="270" valign="top" align="center" border="0" cellpadding="0" cellspacing="0" class="text" style="font-size:12px" >
+
+
+   <tr>
+    <td >  
+ <fieldset>
+           <legend>
+     数据管理参数设置
+           </legend> 
+      <html:form action="/sysparams.do?act=123">   
+  <table width="488" height="57" border="0" cellpadding="0" cellspacing="0" bgColor=#f4f5f6>   
+ 
+
+      <tr>
+      <td height="12" colspan="4">
+      </td>
+   </tr>
+   <tr>
+      <td width="27" height="25">&nbsp;</td>
+      <td width="349" height="25" valign="middle">数据清理范围：
+       
+       <input name="cleancope"  type="text" size="30" >
+              </td>
+      <td width="117" colspan="2" align="left" valign="middle">天前</td>
+   </tr>
+    <tr>
+      <td height="12" colspan="4">
+      </td>
+   </tr>
+   <tr>
+      <td width="27" height="25">&nbsp;</td>
+      <td width="349" height="25" valign="middle">数据清理时间：
+       
+      <select name="cleantime">
+          <option>00：00</option>
+          <option selected>01：00</option>
+          <option>02：00</option>
+          <option>03：00</option>
+          <option>04：00</option>
+    <option>05：00</option>
+          <option>06：00</option>
+          <option>07：00</option>
+    <option>08：00</option>
+          <option>09：00</option>
+          <option>10：00</option>
+    <option>11：00</option>
+          <option>12：00</option>
+          <option>13：00</option>
+    <option>14：00</option>
+          <option>15：00</option>
+          <option>16：00</option>
+    <option>17：00</option>
+          <option>18：00</option>
+          <option>19：00</option>
+    <option>20：00</option>
+          <option>21：00</option>
+          <option>22：00</option>
+    <option>23：00</option>
+          
+        </select>
+              </td>
+      <td width="117" colspan="2" valign="middle">&nbsp;</td>
+   </tr>
+      <tr>
+      <td height="12" colspan="4">
+      </td>
+   </tr>
+  
+   <tr>
+      <td width="27" height="25">&nbsp;</td>
+      <td width="349" height="25" valign="middle">备份路径设置：
+       <input name="backuppath" type="text" size="30" value=<%=dbpath%>>       
+       </td>
+      <td width="117" colspan="2" valign="middle"><a href="show.jsp">浏览</a>
+      </td>
+   </tr>
+   <tr>
+      <td height="12" colspan="4"></td>
+   </tr>
+   <tr>
+      <td width="31" height="26">&nbsp;</td>
+      <td width="406" height="26" valign="middle" colspan="2">选择还原文件：
+       <input type="FILE" id="filename" size="30" name="file0" class="input-file" value="浏览" onchange="javascript:checkFileType();">
+         </td>
+      
+   </tr>
+   <tr>
+      <td height="12" colspan="4"></td>
+   </tr>
+   <tr>
+       <td height="28" colspan="4" align="center">
+       <img src="<%=basePath%>public/images/reset.gif" border=0 align=middle>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <img src="<%=basePath%>public/images/save.gif" border=0 align=middle>
+       </td>           
+
+  </tr>
+   </table>
+  </html:form>
+  </fieldset>  </td>
+  
+  </tr>
+  
+</table>
+</body>
+</html>

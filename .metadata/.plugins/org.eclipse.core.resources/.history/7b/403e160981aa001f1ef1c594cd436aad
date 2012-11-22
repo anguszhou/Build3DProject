@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping  package="xjtu.citi.entity" >
+
+	<class name="CompanyInfo"  table="companyinfo"  >
+		<id name="id" column="id"  >
+			<generator class="native"/>
+		</id>
+        <property name="name"    column="companyName" ></property>
+        <property name="taxnum"   column="taxNum" ></property>
+        <property name="registfund"   column="registFund" ></property>
+        <property name="legal"   column="legal" ></property>
+        <property name="telephone"   column="telephone" ></property>
+        <property name="isListedComp"   column="isListedComp" ></property>
+        <property name="isCoreComp"   column="isCoreComp" ></property>
+   
+       	
+        <many-to-one name="industrytype" class="IndustryType"  column="industrytypeid" lazy="false" fetch="join"/>
+        
+        <set name="feedbacks"    inverse="true"    lazy="true" cascade="all"     > 
+			<key column="id"/>
+			<one-to-many class="Feedback"/> 
+        </set> 
+        
+        <set name="smeassessments"    inverse="true"    lazy="true" cascade="all"     > 
+			<key column="id"/>
+			<one-to-many class="SMEassessment"/> 
+        </set> 
+        
+        <set name="accounts"    inverse="true"    lazy="true" cascade="all"     > 
+			<key column="id"/>
+			<one-to-many class="Account"/> 
+        </set> 
+   
+    </class>
+</hibernate-mapping>

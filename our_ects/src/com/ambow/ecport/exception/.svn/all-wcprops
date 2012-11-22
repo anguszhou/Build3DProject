@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ecport/exception
+END
+ManagerOrderException.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ecport/exception/ManagerOrderException.java
+END
+ManagerUserException.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ecport/exception/ManagerUserException.java
+END
+ManagerProductException.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ecport/exception/ManagerProductException.java
+END

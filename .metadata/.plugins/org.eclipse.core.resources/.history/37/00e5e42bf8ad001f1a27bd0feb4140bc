@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<title>Consultant</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<%@ page contentType="text/html; charset=UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+	<SCRIPT src="js/flashobj.js" type=text/javascript></SCRIPT>
+	
+</head>
+
+<body>
+	<div id="mainPan">
+	
+  		<div id="leftPan">
+  			<div id="leftTopPan">
+  				<a href="index.jsp"><img src="images/logo.gif" title="Consultant" alt="Consultant" width="160" height="39" border="0" /></a>
+  			</div>
+			<ul>
+			<c:choose>
+				<c:when test="${user == null}">
+					<li class="home">首页</li>
+					<li><a href="#">产品介绍</a></li>
+					<li><a href="#">后台管理</a></li>
+					<li><a href="#">企业用户</a></li>
+					<li><a href="#">银行用户</a></li>
+					<li><a href="#">帮助</a></li>
+					<li class="contact"><a href="#">联系我们</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="home">首页</li>
+					<li><a href="#">产品介绍</a></li>
+						<c:if test="${user.usertype.id == 3}">
+							<li><a href="#">后台管理</a></li>
+						</c:if>
+						<c:if test="${user.usertype.id == 4}">
+							<li><a href="#">企业用户</a></li>
+						</c:if>
+						<c:if test="${user.usertype.id == 1||user.usertype.id == 2}">
+							<li><a href="#">银行用户</a></li>
+						</c:if>
+						
+					<li><a href="#">帮助</a></li>
+					<li class="contact"><a href="#">联系我们</a></li>
+				</c:otherwise>
+			</c:choose>
+			</ul>
+			
+			<form action="${pageContext.request.contextPath}/login.do" method="post">
+				<h2>用户登录</h2>
+				<label>用户名:</label>
+				<input name="name" type="text" id="name" />
+				<label>密码:</label>
+				<input name="password" type="password" id="password" />
+				<input name="" type="submit" class="button" value="登录" />
+				<div id="register">
+					<a href="${pageContext.request.contextPath}/companyRegist.jsp">企业用户注册</a>
+				</div>
+			</form>
+  		</div>
+  
+	  <div id="middlePan">
+	  	<h1>客户挖掘系统<br /><span>senectus et netus et<br /> 
+	    malesuada</span> </h1>
+	    <br />
+		 <div class=focusFlash>
+			<div id=sasFlashFocus27></div>
+			<script>
+				var sohuFlash2 = new sohuFlash("flash/demo001.swf", "27", 522, 245, "7");
+				sohuFlash2.addParam("quality", "high");
+				sohuFlash2.addParam("wmode", "opaque");
+				sohuFlash2.addVariable("image","images/02.jpg|images/03.jpg|images/04.jpg|images/01.jpg|");
+				sohuFlash2.addVariable("url","${pageContext.request.contextPath}/productDetail.do?productId=70|${pageContext.request.contextPath}/productDetail.do?productId=20|${pageContext.request.contextPath}/productDetail.do?productId=63|${pageContext.request.contextPath}/productDetail.do?productId=144");
+				sohuFlash2.addVariable("info", "全城热恋dv3|强悍独显N71|时尚Inspiron|超值大换购|");
+				sohuFlash2.addVariable("stopTime","5000");
+				sohuFlash2.write("sasFlashFocus27");
+			</script>
+		</div>	
+		<div id="middlemorePan">
+	      <p class="textposition">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	   		 <a href="#">more</a>
+	   </div>    
+		<div id="middleaddPan">	  
+	    	<div id="middleaddonePan">
+				<p class="whitetext">g-consultant</p>
+				<p class="whitetextbig">new launch</p>
+		 		<a href="#">view      </a>
+		 	</div>
+		
+		   	<div id="middleaddtwoPan">
+				<p class="whitetext">g-consultant</p>
+				<p class="whitetextbig">solutions</p>
+			  	<a href="#">view      </a>
+			</div>
+		</div>
+		<h4>财经动态</h4>
+		<div>
+			<table>
+				<tr width="400">
+				   <td width="360">
+					<span>西安交通大学软件学院即将迎来2010届学生</span>
+				   </td>
+				   
+				</tr>
+			</table>
+		</div>
+		<div id="middlemorenextPan">
+	      	<p class="textposition">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	    	<a href="#" align="right">more</a>
+	    </div> 
+	</div>
+  
+  	<div id="rightPan">
+  		<div id="rightTopPan"><a href="index.html"><img src="images/xjtulogo.png" title="XJTU" alt="XJTU" width="135" height="135" border="0" /></a></div>
+   
+		    <ul>
+				<h2>花旗快讯</h2>
+					<div id=csInit STYLE="position:relative; Visibility:visible; Filter:revealTrans(duration=2, transition=3); width:355; height:226; background-color: white;" onmouseover="stop_cs();" onmouseout="start_cs()"></div> <!-- 动态文字开始 --> <script language=JavaScript>var timerID_cs = 4000; 
+var csTitle=new Array(); 
+var csNum=0; 
+csTitle[1]='<table cellpadding=0 align=center width=98% cellspacing=0><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184074.shtml class=a_lan14>专门为SLI量身打造 鑫谷P4-400全能王电源</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184124.shtml class=a_lan14>X700王者诞生--微星推出RX700PRO-TD128E</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184050.shtml class=a_lan14>Geforce 6系列疯狂SLI！铭瑄不同SLI方案</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184139.shtml class=a_lan14>宇瞻全系列DDR2内存导入无铅制程蓄势待发</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184135.shtml class=a_lan14>黄红白三色齐上 盈通YN-UFO“色”气满盈</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184249.shtml class=a_lan14>支持939的捷波K8T890 Pro主板竟仅售799元</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184259.shtml class=a_lan14>5999元 国产14寸经典机型竟披上combo新衣</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184261.shtml class=a_lan14>雄赳赳 气昂昂 网络聊天畅台电摄像头大军</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184263.shtml class=a_lan14>AGP平台最后的暑期 双敏平民级法拉利选购</a></td><td width=50 align=right class=font_gray>07-08</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0708/184264.shtml class=a_lan14>放假买咋样的本？神舟经济实用型本本导购</a></td><td width=50 align=right class=font_gray>07-08</td></tr></table>'; 
+csTitle[2]='<table cellpadding=0 align=center width=98% cellspacing=0><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0707/183918.shtml class=a_lan14>华擎4款“游戏王” 暑期装机喜洋洋（图）</a></td><td width=50 align=right class=font_gray>07-07</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0707/183948.shtml class=a_lan14>独创触摸式按键-爱国者MP4引领人性化潮流</a></td><td width=50 align=right class=font_gray>07-07</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0707/183910.shtml class=a_lan14>夏新 MP3.手机梦想网络歌手大赛圆你梦想</a></td><td width=50 align=right class=font_gray>07-07</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0707/183873.shtml class=a_lan14>双蝶飞舞 BenQ抗“日”机暑期好礼大回馈</a></td><td width=50 align=right class=font_gray>07-07</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0707/183904.shtml class=a_lan14>七喜进攻高端MP3市场微硬盘彩屏DM737出产</a></td><td width=50 align=right class=font_gray>07-07</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0706/183704.shtml class=a_lan14>声形兼顾 -奥美嘉音乐公文包Q38风行上市</a></td><td width=50 align=right class=font_gray>07-07</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0707/183829.shtml class=a_lan14>谁还在等？ 三星金将军刮奖活动进行中…</a></td><td width=50 align=right class=font_gray>07-07</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0706/183661.shtml class=a_lan14>金河田支持双核心劲霸2.2版电源闪亮登场</a></td><td width=50 align=right class=font_gray>07-06</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0706/183602.shtml class=a_lan14>猛攻K8平台 盈通AK主板上阵 仅售价499元</a></td><td width=50 align=right class=font_gray>07-06</td></tr><tr bgcolor=><td width=14 align=center valign=middle>·</td><td height=22> <a href=http://news.zol.com.cn/2005/0706/183620.shtml class=a_lan14>精英：K8T800-A 主流K8主板疯狂降价(图)</a></td><td width=50 align=right class=font_gray>07-06</td></tr></table>'; 
+csTitle[3]=''; 
+function playTran_cs(){ 
+csInit.filters.revealTrans.play(); 
+} 
+var ii=2; 
+var cskey=0; 
+function next_cs(){ 
+if(csNum<ii) csNum++ ; 
+else csNum=1; 
+if( cskey==0 ){ 
+cskey=1; 
+csInit.innerHTML=csTitle[csNum]; 
+}else{ 
+//csInit.filters.revealTrans.Transition=20; 
+//csInit.filters.revealTrans.apply(); 
+
+csInit.innerHTML=csTitle[csNum]; 
+//playTran_cs(); 
+} 
+theTimer_cs=setTimeout("next_cs()", timerID_cs); 
+} 
+function stop_cs() { 
+window.clearTimeout(theTimer_cs); 
+} 
+function start_cs() { 
+theTimer_cs=setTimeout("next_cs()", timerID_cs); 
+} 
+next_cs(); 
+</script> 
+
+			</ul>
+		  
+
+	</div>
+  
+	<div id="footermainPan">
+	  <div id="footerPan">
+	  	<ul>
+	  	<li><a href="#">Home</a>| </li>
+	  	<li><a href="#">About us</a> | </li>
+	  	<li><a href="#">Network</a>| </li>
+	  	<li><a href="#">Submission</a> | </li>
+	  	<li><a href="#">Archives</a> |</li>
+		<li><a href="#">Finance</a> |</li>
+		<li><a href="#">Contact</a></li>
+		</ul>
+		<p class="copyright">©gconsultant all right reaserved</p>
+		
+		<div id="footerPanhtml"><a href="http://validator.w3.org/check?uri=referer" target="_blank">html</a></div>
+	    <div id="footerPancss"><a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank">css</a></div>
+		<ul class="templateworld">
+	  	<li>Design By:</li>
+		<li><a href="http://www.templateworld.com" target="_blank">Template World</a></li>
+	  </ul>
+	  </div>
+	</div>
+</div>
+</body>
+</html>

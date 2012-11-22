@@ -1,0 +1,12 @@
+#Fri May 06 15:33:03 CST 2011
+tomcat6Server.citibank2.shouldBackup=false
+tomcat6Server.citibank2.shouldOverwrite=false
+tomcat6Server.citibank2.isExploded=true
+tomcat6Server.citibank2.deploymentPath=E\:\\apache-tomcat-6.0.18\\webapps\\citibank
+tomcat6Server.citibank2.isUptoDate=true
+tomcat6Server.citibank2.contextRoot=/citibank
+eclipse.preferences.version=1
+tomcat6Server.citibank2.isDeployed=true
+tomcat6Server.citibank2.deployIsOverProject=false
+tomcat6Server.citibank2.type=WebDeployment
+tomcat6Server.citibank2.earProjectName=

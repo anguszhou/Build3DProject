@@ -1,0 +1,394 @@
+package xjtu.citi.impl;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import xjtu.citi.dao.ISMEassessmentDao;
+import xjtu.citi.entity.Account;
+import xjtu.citi.entity.CompanyInfo;
+import xjtu.citi.entity.Parameter;
+import xjtu.citi.entity.TransInfo;
+import xjtu.citi.exception.ManagerUserException;
+import xjtu.citi.util.HibernateUtils;
+
+public class SMEassessmentDaoImpl implements ISMEassessmentDao {
+	
+	public class node
+	{
+		int id;
+		double value;
+		int ran;
+		
+		public int getId()
+		{
+			return id;
+		}
+		public void setId(int id)
+		{
+			this.id = id;
+		}
+		public double getValue()
+		{
+			return value;
+		}
+		public void setValue(double value)
+		{
+			this.value = value;
+		}
+		
+		public node()
+		{}
+	}
+
+	public Collection calSMEassess() {
+		
+		Session   session = null;
+		Transaction  tran = null;
+		
+		Parameter pp = new Parameter();
+		Collection<Account> account = null ;
+		Collection<TransInfo> info = null;
+		Collection<CompanyInfo> comp = null;
+		Collection<CompanyInfo> corecp = findCoreComp();
+		
+		session = HibernateUtils.getSession();
+		tran = session.beginTransaction();
+		
+		pp =(Parameter)session.createQuery("from Parameter p1 where p1.time=(select max(p2.time) from Parameter p2)").uniqueResult();
+		account = session.createQuery("from Account").list();
+		info = session.createQuery("from TransInfo").list();
+		comp = session.createQuery("from CompanyInfo").list();
+		
+		int num = comp.size();
+		double transinfo[][]=new double[num][num];
+		double score[] = new double [num];
+		double rank[] = new double[num];
+		double inrank[] = new double[num];
+		char risk[] = new char[num];
+		
+		for (Iterator ff = info.iterator(); ff.hasNext();)
+		{
+			TransInfo tt = (TransInfo) ff.next();
+			int in = 0,out = 0 ;
+			for (Iterator aa = account.iterator(); aa.hasNext();)
+			{
+				Account acc = (Account) aa.next();
+				if(acc.getAccount().equals(tt.getAccountIn()))
+				{
+					in = acc.getCompanyinfo().getId();
+				}				
+			}
+			for (Iterator aa = account.iterator(); aa.hasNext();)
+			{
+				Account acc = (Account) aa.next();
+				if(acc.getAccount().equals(tt.getAccountOut()))
+				{
+					out = acc.getCompanyinfo().getId();
+				}
+			}
+			transinfo[out-1][in-1] = tt.getAmount();
+			//System.out.println(transinfo[out-1][in-1]+" "+tt.getId()+" "+out+" "+in);
+		}
+		
+		//迭代每个核心企业，对其周边路径为1的中小企业打分
+		for (Iterator core = corecp.iterator(); core.hasNext();)
+		{
+			CompanyInfo ccp = (CompanyInfo) core.next();
+			for (int i = 0; i < num	; i++) //定位某一大企业，循环搜索可能有资金联系的小企业
+			{
+				if(transinfo[ccp.getId()-1][i] != 0 || transinfo[i][ccp.getId()-1] != 0)
+				{
+					if(transinfo[ccp.getId()-1][i]>=transinfo[i][ccp.getId()-1])
+					{
+						score[i] += (transinfo[ccp.getId()-1][i] + transinfo[i][ccp.getId()-1])*pp.getAin();
+					}
+					else
+					{
+						score[i] += (transinfo[ccp.getId()-1][i] + transinfo[i][ccp.getId()-1])*pp.getAout();
+					}
+					for (int j = 0; j < num; j++) //定位某一小企业，循环搜索可能有资金联系的小企业
+					{
+						if(transinfo[j][i] != 0 || transinfo[i][j] != 0)
+						{
+							if(transinfo[j][i]>=transinfo[i][j])
+							{
+								score[j] += (transinfo[j][i] + transinfo[i][j])*pp.getBout();
+							}
+							else
+							{
+								score[j] += (transinfo[j][i] + transinfo[i][j])*pp.getBin();
+							}
+						}
+					}
+				}
+			}
+		}
+
+		double max = 0 , min = 0 ;
+		for (int i = 0; i < num; i++)
+		{
+			if(max < score[i])
+			{
+				max = score[i];
+			}
+			if(min > score[i])
+			{
+				min = score[i];
+			}			
+		}
+		for (int i = 0; i < num; i++)
+		{
+			score[i] = ((score[i] - min)/(max - min))*100;
+			rank[i] = score[i];
+		}		
+		for (Iterator iterator = corecp.iterator(); iterator.hasNext();)
+		{
+			CompanyInfo ccp = (CompanyInfo) iterator.next();
+			score[ccp.getId()-1] = -1;
+			rank[ccp.getId()-1] = -1;
+		}
+		for(int i=num-1 ; i>0 ; i--)
+		{
+			for(int j=0 ; j<i ; j++)
+			{
+				if(score[j]<score[j+1])
+				{
+					double temp = score[j];
+					score[j] = score[j+1] ; 
+					score[j+1]=temp;
+				}
+			}
+		}
+	
+		//中小企业全排名
+		for (int i = 0; i < num; i++)
+		{
+			for (int j = 0; j < num; j++)
+			{
+				if(rank[i]==score[j])	
+				{
+					rank[i]=j;
+					break;
+				}			
+			}
+		}
+	
+		for (int i = 0; i < 20; i++) //中小企业行业内排名
+		{
+			int size = 0 ; 
+			for (Iterator iterator = comp.iterator(); iterator.hasNext();)
+			{
+				CompanyInfo cp = (CompanyInfo) iterator.next();
+				if(cp.getIndustrytype().getId()==(i+1)&&cp.getIsCoreComp() != 1)
+				{
+					size++;
+				}
+			}
+			if(size != 0)
+			{
+				node temp[] = new node [size];
+				for (int j = 0; j < size; j++)
+				{
+					temp[j] = new node();
+				}
+				int k = 0;
+				for (Iterator iterator = comp.iterator(); iterator.hasNext();)
+				{
+					CompanyInfo cpp = (CompanyInfo) iterator.next();
+					if(cpp.getIndustrytype().getId()==(i+1)&&cpp.getIsCoreComp() != 1)
+					{
+						temp[k].id = cpp.getId();
+						temp[k].value = score[(int)rank[cpp.getId()-1]];
+						k++;
+					}
+				}
+				if(size != 1)
+				{
+					for(int j=size-1 ; j>0 ; j--)
+					{
+						for(int p=0 ; p<j ; p++)
+						{
+							if(temp[p].value<temp[p+1].value)
+							{
+								double temp1 = temp[p].value;
+								temp[p].value = temp[p+1].value ; 
+								temp[p+1].value= temp1 ;
+								
+								int temp2 = temp[p].id;
+								temp[p].id = temp[p+1].id;
+								temp[p+1].id = temp2;
+							}
+						}
+					}
+					for (int j = 0; j < temp.length; j++)
+					{
+						temp[j].ran = j;
+					}
+				}
+				else
+				{
+					temp[0].ran = 0;
+				}
+				for (int j = 0; j < temp.length; j++)
+				{
+					inrank[temp[j].id-1] = temp[j].ran;
+				}
+			}			
+		}
+		for (int j = 0; j < inrank.length; j++)
+		{
+			System.out.println(score[j]+" "+(j+1));
+		}
+		System.out.println("~~~~~~~~~~~~~~~~~");
+		/*for (int j = 0; j < inrank.length; j++)
+		{
+			System.out.println(inrank[j]+" "+(j+1));
+		}*/
+		for (int j = 0; j < num; j++)
+		{
+			if(score[j]>=90&&score[j]<=100)
+				risk[j]='A';
+			else if(score[j]>=80&&score[j]<90)
+				risk[j]='B';
+			else if(score[j]>=70&&score[j]<80)
+				risk[j]='C';
+			else if(score[j]>=60&&score[j]<70)
+				risk[j]='D';
+			else 
+				risk[j]='E';
+			System.out.println(risk[j]+" "+(j+1));
+		}
+		
+	try{
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		
+		return null;
+	}
+
+	public Collection findCoreComp() {
+		
+		Session   session = null;
+		Transaction  tran = null;
+		Parameter pp = new Parameter();
+		Collection<Account> account = null ;
+		Collection<TransInfo> info = null;
+		Collection<CompanyInfo> comp = null;
+		Collection<CompanyInfo> corecp = null;
+		
+		session = HibernateUtils.getSession();
+		tran = session.beginTransaction();
+		
+		pp =(Parameter)session.createQuery("from Parameter p1 where p1.time=(select max(p2.time) from Parameter p2)").uniqueResult();
+		account = session.createQuery("from Account").list();
+		info = session.createQuery("from TransInfo").list();
+		comp = session.createQuery("from CompanyInfo").list();
+		
+		int num = comp.size();
+		double transinfo[][]=new double[num][num];
+		double score[] = new double [num];
+		double fund[] = new double[num];
+		double rank[] = new double[num];
+		
+		for (Iterator cc = comp.iterator(); cc.hasNext();)
+		{
+			CompanyInfo cfo = (CompanyInfo) cc.next();
+			cfo.setIsCoreComp(0);
+			session.update(cfo);
+			fund[cfo.getId()-1] = cfo.getRegistfund()*pp.getRegistfund()+cfo.getIsListedComp()*pp.getListedcomp();	
+		}
+		
+		for (Iterator ff = info.iterator(); ff.hasNext();)
+		{
+			TransInfo tt = (TransInfo) ff.next();
+			int in = 0,out = 0 ;
+			for (Iterator aa = account.iterator(); aa.hasNext();)
+			{
+				Account acc = (Account) aa.next();
+				if(acc.getAccount().equals(tt.getAccountIn()))
+				{
+					in = acc.getCompanyinfo().getId();
+				}				
+			}
+			for (Iterator aa = account.iterator(); aa.hasNext();)
+			{
+				Account acc = (Account) aa.next();
+				if(acc.getAccount().equals(tt.getAccountOut()))
+				{
+					out = acc.getCompanyinfo().getId();
+				}
+			}
+			transinfo[out-1][in-1] = tt.getAmount();
+		}
+		
+		for(int i=0 ; i<num ; i++)
+		{
+			double temp = 0;
+			for(int j=0 ; j<num ; j++)
+			{
+				temp += transinfo[i][j];
+				temp += transinfo[j][i];
+			}
+			
+			score[i] = temp*pp.getCashflow()+fund[i];
+			rank[i] = score [i];
+		}
+				
+		for(int i=num-1 ; i>0 ; i--)
+		{
+			for(int j=0 ; j<i ; j++)
+			{
+				if(score[j]<score[j+1])
+				{
+					double temp = score[j];
+					score[j] = score[j+1] ; 
+					score[j+1]=temp;
+				}
+			}
+		}
+		for (int i = 0; i < num; i++)
+		{
+			for (int j = 0; j < num; j++)
+			{
+				if(rank[i]==score[j])
+					rank[i]=j;
+			}
+		}
+		
+		for (Iterator cc = comp.iterator(); cc.hasNext();)
+		{
+			CompanyInfo cfo = (CompanyInfo) cc.next();
+			if(rank[cfo.getId()-1]<pp.getCorecomp())
+			{
+				cfo.setIsCoreComp(1);			
+			}				
+			session.update(cfo);
+		}		
+		corecp = session.createQuery("from CompanyInfo c where c.isCoreComp=1").list();
+		try{
+			tran.commit();
+		}catch(Exception e){
+			tran.rollback();
+			e.printStackTrace();			
+		}finally{
+			session.close();
+		}		
+		return corecp;
+	}
+	public static void main(String[] args)
+	{
+		ISMEassessmentDao dao = new SMEassessmentDaoImpl();
+		dao.findCoreComp();
+		dao.calSMEassess();
+	}
+
+}

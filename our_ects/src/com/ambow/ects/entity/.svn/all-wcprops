@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/notepad/!svn/ver/385/ects/src/com/ambow/ects/entity
+END
+OrderStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/OrderStatus.java
+END
+Product.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/notepad/!svn/ver/385/ects/src/com/ambow/ects/entity/Product.java
+END
+Comment.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/notepad/!svn/ver/384/ects/src/com/ambow/ects/entity/Comment.java
+END
+Country.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/Country.java
+END
+OrderLine.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/OrderLine.java
+END
+ShopCart.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/ShopCart.java
+END
+Province.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/Province.java
+END
+ContcatInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/ContcatInfo.java
+END
+PayWay.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/PayWay.java
+END
+Order.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/Order.java
+END
+Category.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/Category.java
+END
+StarRating.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/notepad/!svn/ver/309/ects/src/com/ambow/ects/entity/StarRating.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/entity/User.java
+END

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<title>Consultant</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<%@ page contentType="text/html; charset=UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+	<SCRIPT src="js/flashobj.js" type=text/javascript></SCRIPT>
+	<script type="text/javascript" src="js/home.js"></script>
+</head>
+
+<body>
+	<div id="mainPan">
+
+		<div class="header">
+		
+
+	
+  		<div id="leftPan">
+  			<div id="leftTopPan">
+  				<a href="index.jsp"><img src="images/logo.gif" title="Consultant" alt="Consultant" width="160" height="39" border="0" /></a>
+  			</div>
+			<ul>
+			<c:choose>
+				<c:when test="${user == null}">
+					<li class="home">首页</li>
+					<li><a href="#">产品介绍</a></li>
+					<li><a href="#">后台管理</a></li>
+					<li><a href="#">企业用户</a></li>
+					<li><a href="#">银行用户</a></li>
+					<li class="contact"><a href="#">联系我们</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="home">首页</li>
+					<li><a href="#">产品介绍</a></li>
+						<c:if test="${user.usertype.id == 3}">
+							<li><a href="#">后台管理</a></li>
+						</c:if>
+						<c:if test="${user.usertype.id == 4}">
+							<li><a href="#">企业用户</a></li>
+						</c:if>
+						<c:if test="${user.usertype.id == 1||user.usertype.id == 2}">
+							<li><a href="#">银行用户</a></li>
+						</c:if>
+						
+					<li><a href="#">帮助</a></li>
+					<li class="contact"><a href="#">联系我们</a></li>
+				</c:otherwise>
+			</c:choose>
+			</ul>
+			
+			<form action="${pageContext.request.contextPath}/login.do" method="post">
+				<h2>用户登录</h2>
+				<label>用户名:</label>
+				<input name="name" type="text" id="name" />
+				<label>密码:</label>
+				<input name="password" type="password" id="password" />
+				<input name="" type="submit" class="button" value="登录" />
+				<div id="register">
+					<a href="${pageContext.request.contextPath}/companyRegist.jsp">企业用户注册</a>
+				</div>
+			</form>
+  		</div>
+  
+	  <div id="middlePan">
+	  	<h1>客户挖掘系统<br /><span>senectus et netus et<br /> 
+	    malesuada</span> </h1>
+	    <br />
+		
+		  
+	
+		
+  		
+ 	<div class="middle">
+	 
+		  	
+			 <div class=focusFlash>
+				<div id=sasFlashFocus27></div>
+				<script>
+					var sohuFlash2 = new sohuFlash("flash/demo001.swf", "27", 522, 245, "7");
+					sohuFlash2.addParam("quality", "high");
+					sohuFlash2.addParam("wmode", "opaque");
+					sohuFlash2.addVariable("image","images/22.jpg|images/33.jpg|images/44.jpg|images/11.jpg|");
+					sohuFlash2.addVariable("url","");
+					sohuFlash2.addVariable("info", "");
+					sohuFlash2.addVariable("stopTime","4000");
+					sohuFlash2.write("sasFlashFocus27");
+				</script>
+			</div>	
+			
+		</div>
+		
+  	</div>
+  	<div class="footer">
+			<jsp:include page="footer.jsp"></jsp:include>
+		</div>
+  		<div class="right">
+			<jsp:include page="right2.jsp"></jsp:include>
+		</div>
+  	
+  		
+		
+		
+	</div>
+</body>
+</html>

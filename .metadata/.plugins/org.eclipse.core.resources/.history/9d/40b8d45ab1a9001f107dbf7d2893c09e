@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html; charset=GBK" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Jewelry Shop</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+  
+
+
+<!------------------------文件名：result.jsp------------------->
+<%@taglib prefix="s" uri="/struts-tags"%>
+	<body>
+		上传文件：
+		<table>
+		<!-- 循环显示上传成功文件名 -->
+		<s:iterator value="fileFileName" status="fn">
+		<tr>
+		<td>
+		<!-- 上传成功文件名 -->
+		<s:property />		
+		</td>
+		<td>
+		<!-- 下载文件链接内容为定义的下载Action -->
+		<!-- 下载文件名作为链接参数fileName值，用OGNL表达式表达 -->	
+		<a href="<s:url value='download.action'>  				
+                 	<s:param name='fileName'
+ value='fileFileName[#fn.getIndex()]'/>  
+                 </s:url>">下载</a>
+		</td>
+		</tr>
+		</s:iterator>		
+		</table>		
+	
+
+
+</body>
+</html>

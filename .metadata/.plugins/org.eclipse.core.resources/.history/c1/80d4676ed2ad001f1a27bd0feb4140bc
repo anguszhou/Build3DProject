@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<action-mappings>
+	
+		<!-- 企业用户部分 -->
+		<action path="/peopleAdd" type="xjtu.citi.web.BankUserHandler" parameter="peopleAdd">
+			<forward name="success" path="/peoplelist.do"></forward>
+		</action>	
+
+		<action path="/companyRegist" type="xjtu.citi.web.CompanyUserHandler" parameter="companyRegist">
+			<forward name="success" path="/success.jsp"></forward>
+			<forward name="index" path="/productList.jsp"></forward>
+		</action>
+		
+		<action path="/companyModify" type="xjtu.citi.web.CompanyUserHandler" parameter="companyModify">
+			<forward name="companyModify" path="/companyindex.do"></forward>
+		</action>
+		
+		<action path="/companyindex" type="xjtu.citi.web.CompanyUserHandler" parameter="companyindex">
+			<forward name="companyindex" path="/companyIndex.jsp"></forward>
+		</action>	
+		
+		<action path="/feedback" type="xjtu.citi.web.CompanyUserHandler" parameter="feedback">
+			<forward name="feedback" path="/companyindex.do"></forward>
+		</action>	
+		
+		<action path="/companysearch" type="xjtu.citi.web.CompanyUserHandler" parameter="companysearch">
+			<forward name="companysearch" path="/companyindex.do"></forward>
+		</action>
+		
+		<!-- 银行用户部分 -->
+		<action path="/login" type="xjtu.citi.web.BankUserHandler" parameter="login">
+			<forward name="success1" path="/bankHome2.do"></forward>
+			<forward name="success2" path="/bankHome.do"></forward>
+			<forward name="success3" path="/peoplelist.do"></forward>
+			<forward name="success4" path="/companyindex.do"></forward>
+			<forward name="success" path="/success.jsp"></forward>
+		</action>
+		
+		<action path="/bankHome" type="xjtu.citi.web.BankUserHandler" parameter="bankHome">
+			<forward name="success" path="/bankIndex.jsp"></forward>
+		</action>
+		
+		<action path="/bankHome2" type="xjtu.citi.web.BankUserHandler" parameter="bankHome">
+			<forward name="success" path="/bankIndex2.jsp"></forward>
+		</action>
+		
+		<action path="/bankModify" type="xjtu.citi.web.BankUserHandler" parameter="bankModify">
+			<forward name="bankModify" path="/bankHome.do"></forward>
+		</action>
+		
+		<action path="/parameter" type="xjtu.citi.web.BankUserHandler" parameter="parameter">
+			<forward name="success" path="/bankIndex.jsp"></forward>
+		</action>
+		
+		<action path="/warnparameter" type="xjtu.citi.web.BankUserHandler" parameter="warnparameter">
+			<forward name="success" path="/bankIndex.jsp"></forward>
+		</action>
+		
+		<action path="/backup" type="xjtu.citi.web.BankUserHandler" parameter="backup">
+			<forward name="backup" path="/peoplelist.do"></forward>		
+		</action>
+
+		
+		<action path="/coreComp" type="xjtu.citi.web.BankUserHandler" parameter="coreComp">
+			<forward name="coreCompList" path="/bankIndex.jsp"></forward>		
+		</action>
+		
+		<action path="/smeComp" type="xjtu.citi.web.BankUserHandler" parameter="smeComp">
+			<forward name="smeCompList" path="/bankIndex.jsp"></forward>		
+		</action>
+		<action path="/peoplelist" type="xjtu.citi.web.BankUserHandler" parameter="peoplelist">
+			<forward name="peoplelist" path="/backManage.jsp"></forward>		
+		</action>
+		
+		<action path="/deleteUser" type="xjtu.citi.web.BankUserHandler" parameter="deleteUser">
+			<forward name="deleteUser" path="/peoplelist.do"></forward>		
+		</action>
+		
+		<action path="/smcompanyDetail" type="xjtu.citi.web.BankUserHandler" parameter="smcompanyDetail">
+			<forward name="smcompanyDetail" path="/companyIndex2.jsp"></forward>		
+		</action>
+		
+		<action path="/corecompanyDetail" type="xjtu.citi.web.BankUserHandler" parameter="corecompanyDetail">
+			<forward name="corecompanyDetail" path="/coreCompList.do"></forward>		
+		</action>
+		
+		<action path="/coreCompList" type="xjtu.citi.web.BankUserHandler" parameter="coreCompList">
+			<forward name="coreCompList" path="/coreCompDetail.jsp"></forward>		
+		</action>
+		
+		<action path="/feedback2" type="xjtu.citi.web.BankUserHandler" parameter="feedback2">
+			<forward name="feedback2" path="/smcompanyDetail.do"></forward>		
+		</action>
+		
+		<action path="/companysearch2" type="xjtu.citi.web.BankUserHandler" parameter="companysearch2">
+			<forward name="companysearch2" path="/smcompanyDetail.do"></forward>		
+		</action>
+		
+		<action path="/sort" type="xjtu.citi.web.BankUserHandler" parameter="smeComp">
+			<forward name="smeCompList" path="/bankIndex.jsp"></forward>		
+		</action>
+		
+		<action path="/logout" type="xjtu.citi.web.BankUserHandler" parameter="logout">
+			<forward name="logout" path="/index.jsp"></forward>		
+		</action>
+		
+		<action path="/getback" type="xjtu.citi.web.BankUserHandler" parameter="getback">
+			<forward name="getback1" path="/bankHome2.do"></forward>
+			<forward name="getback2" path="/bankHome.do"></forward>	
+		</action>
+		
+	</action-mappings>	
+  	
+</struts-config>

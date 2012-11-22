@@ -1,0 +1,192 @@
+package xjtu.citi.web;
+
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import org.apache.struts.actions.MappingDispatchAction;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.apache.struts.actions.MappingDispatchAction;
+
+import com.mysql.jdbc.ResultSet;
+
+
+import xjtu.citi.dao.IBankUserDao;
+import xjtu.citi.dao.IParameterDao;
+import xjtu.citi.dao.IWarnParameterDao;
+import xjtu.citi.entity.Account;
+import xjtu.citi.entity.BankUser;
+import xjtu.citi.entity.Parameter;
+import xjtu.citi.entity.WarnParameter;
+import xjtu.citi.exception.ManagerUserException;
+import xjtu.citi.impl.BankUserDaoImpl;
+import xjtu.citi.impl.ParameterDaoImpl;
+import xjtu.citi.impl.WarnInfoDaoImpl;
+import xjtu.citi.impl.WarnParameterDaoImpl;
+
+
+
+
+import xjtu.citi.entity.BankUser;
+import xjtu.citi.dao.IBankUserDao;
+import xjtu.citi.impl.BankUserDaoImpl;
+import xjtu.citi.entity.UserType;
+import xjtu.citi.exception.ManagerUserException;
+import xjtu.citi.dao.IUserTypeDao;
+import xjtu.citi.impl.UserTypeImpl;
+
+public class BankUserHandler extends MappingDispatchAction{
+
+	public ActionForward login(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		
+		IBankUserDao dao = new BankUserDaoImpl();
+		BankUser user = null;
+		IParameterDao dao1 = new ParameterDaoImpl();
+		IWarnParameterDao dao2 = new WarnParameterDaoImpl();
+		
+		try {			
+			user = dao.login(req.getParameter("name"), req.getParameter("password"));						
+			
+		} catch (ManagerUserException e) {
+			
+			e.printStackTrace();
+		}
+		if(user != null)
+		{
+			req.getSession().setAttribute("user", user);
+			if(user.getUsertype().getId() == 1){         //登录角色为信贷员
+				return mapping.findForward("success1");
+			}else if(user.getUsertype().getId() == 2){   //登录角色为风险评估员
+				Parameter parameter = dao1.find();
+				WarnParameter warnparameter = dao2.find();
+				req.getSession().setAttribute("parameter", parameter);
+				req.getSession().setAttribute("warnparameter", warnparameter);
+				return mapping.findForward("success2");
+			}else if(user.getUsertype().getId() == 3){   //登录角色为后台管理员
+				return mapping.findForward("success3");
+			}else 
+				return mapping.findForward("success4");  //登录角色为企业用户
+		}
+		else
+		{
+			req.setAttribute("message", "用户名或密码有误，请重新登录！");
+			req.setAttribute("success", false);
+			return mapping.findForward("success");
+		}		
+	}
+	
+
+	public ActionForward peopleAdd(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+	{
+		IBankUserDao dao = new BankUserDaoImpl();
+		BankUser user = new BankUser();
+		
+		user.setName(req.getParameter("name"));
+		user.setUsername(req.getParameter("userName"));
+		user.setPassword(req.getParameter("password"));
+		user.setDepartment(req.getParameter("department"));
+		user.setWorkNum(req.getParameter("worknum"));
+		
+		IUserTypeDao typedao = new UserTypeImpl();
+		UserType usertype=new UserType();
+
+
+	    usertype=typedao.findByType(req.getParameter("usertype"));
+		System.out.println(req.getParameter("usertype"));
+		user.setUsertype(usertype);
+		try {
+			System.out.println(usertype.getId());
+			dao.add(user);
+			
+		} catch (ManagerUserException e) {
+			
+			e.printStackTrace();
+			req.setAttribute("message", "抱歉，注册失败！");
+			req.setAttribute("success", false);
+			return mapping.findForward("success");
+		}
+
+		req.getSession().setAttribute("user", user);
+		
+		req.getSession(true).setAttribute("user",user);	
+		req.setAttribute("message", "恭喜，注册成功！");
+		req.setAttribute("success", true);
+		return mapping.findForward("success");
+	}
+	
+	public ActionForward parameter(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp) throws ParseException
+	{	
+		IParameterDao dao = new ParameterDaoImpl();
+		Parameter parameter = new Parameter();
+		parameter = (Parameter) req.getSession().getAttribute("parameter");
+		
+		parameter.setCashflow(Double.parseDouble(req.getParameter("cashflow")));
+		parameter.setRegistfund(Double.parseDouble(req.getParameter("registfund")));
+		parameter.setListedcomp(Double.parseDouble(req.getParameter("listedcomp")));
+		parameter.setCorecomp(Double.parseDouble(req.getParameter("corecomp")));
+		parameter.setAin(Double.parseDouble(req.getParameter("ain")));
+		parameter.setAout(Double.parseDouble(req.getParameter("aout")));
+		parameter.setBin(Double.parseDouble(req.getParameter("bin")));
+		parameter.setBout(Double.parseDouble(req.getParameter("bout")));
+		
+		SimpleDateFormat fordate=new SimpleDateFormat("yyyy-MM-dd");
+		Date date = fordate.parse(req.getParameter("modifiedtime"));
+		parameter.setTime(date);
+		
+		dao.add(parameter);
+		
+		req.getSession().setAttribute("parameter",parameter);
+		
+		return mapping.findForward("success");
+	}
+	
+	public ActionForward backup(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp) throws Exception
+	{
+		Session   session = null;
+		Transaction  tran = null;
+		
+		File f = new File("E:\\output.txt");
+		BufferedWriter output = new BufferedWriter(new FileWriter(f));
+		
+		ResultSet account = (ResultSet) session.createQuery("from Account");
+		System.out.println(account.getInt(1));
+		 while ( account.next() ) {
+			 output.write("|");
+			 output.write( account.getInt(1) + "                 |");
+			 output.write( account.getString(2)+"                 |");
+			 output.write( account.getDate(3) + "                 |\n");		   
+			   }
+		 output.close();
+		return mapping.findForward("backup");
+	}
+}

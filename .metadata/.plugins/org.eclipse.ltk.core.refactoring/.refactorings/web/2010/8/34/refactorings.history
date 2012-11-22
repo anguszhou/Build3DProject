@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 1 package(s) to &apos;citibank/src/xjtu.citi.impl&apos;&#x0D;&#x0A;- Original project: &apos;web&apos;&#x0D;&#x0A;- Destination element: &apos;citibank/src/xjtu.citi.impl&apos;&#x0D;&#x0A;- Original element: &apos;web/src/Export&apos;" description="Copy package" destination="/src&lt;xjtu.citi.impl" element1="/src&lt;Export" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" log="/src&lt;Export&#x09;true&#x09;false" policy="org.eclipse.jdt.ui.copyPackages" stamp="1281860873920" version="1.0"/>
+</session>

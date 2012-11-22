@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/notepad/!svn/ver/394/ects/src/com/ambow/ects/dao/impl
+END
+OrderDaoHibernateImp.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/notepad/!svn/ver/98/ects/src/com/ambow/ects/dao/impl/OrderDaoHibernateImp.java
+END
+ProductDaoImp.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/notepad/!svn/ver/394/ects/src/com/ambow/ects/dao/impl/ProductDaoImp.java
+END
+UserDaoHibernateImp.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/notepad/!svn/ver/341/ects/src/com/ambow/ects/dao/impl/UserDaoHibernateImp.java
+END
+CommentDaoImp.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/notepad/!svn/ver/383/ects/src/com/ambow/ects/dao/impl/CommentDaoImp.java
+END

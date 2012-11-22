@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/citibank/!svn/ver/7/src/xjtu/citi/chart
+END
+RankHistoryChart.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/citibank/!svn/ver/100/src/xjtu/citi/chart/RankHistoryChart.java
+END
+ScoreHistoryChart.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/citibank/!svn/ver/100/src/xjtu/citi/chart/ScoreHistoryChart.java
+END
+IndustryRankHistoryChart.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/citibank/!svn/ver/100/src/xjtu/citi/chart/IndustryRankHistoryChart.java
+END
+RiskLevelHistoryChart.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/citibank/!svn/ver/7/src/xjtu/citi/chart/RiskLevelHistoryChart.java
+END

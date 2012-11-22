@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+<session-factory>
+
+	<property name="show_sql">true</property>
+	<property name="format_sql">true</property>
+
+	<property name="dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<property name="connection.url">
+		jdbc:mysql://localhost:3306/citi
+	</property>
+	<property name="connection.username">root</property>
+	<property name="connection.password">1234</property>
+
+	<property name="cache.provider_class">
+		org.hibernate.cache.NoCacheProvider
+	</property>
+	<mapping resource="xjtu/citi/xml/Account.hbm.xml"/>
+	<mapping resource="xjtu/citi/xml/BankUser.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/CompanyInfo.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/CompanyUser.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/Feedback.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/IndustryType.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/Parameter.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/SMEassessment.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/TransInfo.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/UserType.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/WarnInfo.hbm.xml" />
+	<mapping resource="xjtu/citi/xml/WarnParameter.hbm.xml" />
+
+
+</session-factory>
+</hibernate-configuration>

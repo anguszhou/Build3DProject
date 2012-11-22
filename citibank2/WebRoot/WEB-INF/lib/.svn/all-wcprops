@@ -1,0 +1,227 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/citibank/!svn/ver/49/WebRoot/WEB-INF/lib
+END
+jakarta-oro.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/jakarta-oro.jar
+END
+jstl.jar
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/jstl.jar
+END
+ehcache-1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/ehcache-1.1.jar
+END
+jta.jar
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/jta.jar
+END
+jaas.jar
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/jaas.jar
+END
+dom4j-1.6.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/dom4j-1.6.1.jar
+END
+cglib-2.1.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/cglib-2.1.3.jar
+END
+jcommon-1.0.16.jar
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/jcommon-1.0.16.jar
+END
+commons-collections-2.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/commons-collections-2.1.1.jar
+END
+jfreechart-1.0.13.jar
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/jfreechart-1.0.13.jar
+END
+servlet-api.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/servlet-api.jar
+END
+log4j-1.2.11.jar
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/log4j-1.2.11.jar
+END
+commons-fileupload.jar
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/commons-fileupload.jar
+END
+displaytag-1.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/displaytag-1.1.1.jar
+END
+commons-validator.jar
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/commons-validator.jar
+END
+standard.jar
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/standard.jar
+END
+xalan.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/xalan.jar
+END
+struts.jar
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/struts.jar
+END
+c3p0-0.9.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/c3p0-0.9.0.jar
+END
+asm-attrs.jar
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/asm-attrs.jar
+END
+ehcache-1.2.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/ehcache-1.2.3.jar
+END
+commons-digester.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/commons-digester.jar
+END
+antlr.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/antlr.jar
+END
+asm.jar
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/asm.jar
+END
+hibernate3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/hibernate3.jar
+END
+displaytag-portlet-1.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/displaytag-portlet-1.1.1.jar
+END
+mysql-connector-java-3.1.7-bin.jar
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/mysql-connector-java-3.1.7-bin.jar
+END
+antlr-2.7.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/antlr-2.7.6.jar
+END
+mysql-connector-java-5.0.8-bin.jar
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar
+END
+commons-lang-2.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/commons-lang-2.3.jar
+END
+dwr.jar
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/citibank/!svn/ver/49/WebRoot/WEB-INF/lib/dwr.jar
+END
+commons-logging-1.0.4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/commons-logging-1.0.4.jar
+END
+junit-3.8.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/junit-3.8.1.jar
+END
+antlr-2.7.6rc1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/antlr-2.7.6rc1.jar
+END
+commons-beanutils.jar
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/commons-beanutils.jar
+END
+commons-logging.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/commons-logging.jar
+END
+displaytag-export-poi-1.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/citibank/!svn/ver/1/WebRoot/WEB-INF/lib/displaytag-export-poi-1.1.1.jar
+END

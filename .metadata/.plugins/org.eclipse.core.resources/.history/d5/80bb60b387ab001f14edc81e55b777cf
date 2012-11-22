@@ -1,0 +1,158 @@
+package xjtu.citi.impl;
+
+import java.util.Collection;
+import java.util.Date;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+
+
+import xjtu.citi.util.HibernateUtils;
+
+import xjtu.citi.dao.ICompanyInfoDao;
+import xjtu.citi.entity.CompanyInfo;
+import xjtu.citi.entity.SMEassessment;
+
+public class CompanyInfoDaoImpl implements ICompanyInfoDao {
+
+	public Collection findCore(int start, int max) {
+		Session session = null;
+		Transaction tran = null;
+		Collection list = null;
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			Query query = session.createQuery("from CompanyInfo comp where comp.isCoreComp =1");
+			query.setFirstResult(start);
+			query.setMaxResults(max);
+			list = query.list();
+			tran.commit();
+		} catch (Exception e) {
+			tran.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			
+		}
+		return list;
+	}
+
+	public int getTotal()
+	{
+		Session session = null;
+		Transaction tran = null;
+		int total = 0;
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			total = session.createQuery("From  CompanyInfo comp where comp.isCoreComp =1").list().size();			
+			tran.commit();
+		} catch (Exception e) {
+			tran.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			
+		}
+		return total;
+	}
+	
+	/*public static void main(String[] args) {
+		ICompanyInfoDao dao = new CompanyInfoDaoImpl();
+		Collection<CompanyInfo> list = dao.findCore(0, 12);
+		for(CompanyInfo i : list)
+		{
+			System.out.println(i.getName());
+		}
+		System.out.println(dao.getTotal());
+	}*/
+
+	public Collection findSME(int start, int max) {
+		Session session = null;
+		Transaction tran = null;
+		Collection list = null;
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			Query query = session.createQuery("from SMEassessment p1 where p1.time=(select max(p2.time) from SMEassessment p2)");
+			query.setFirstResult(start);
+			query.setMaxResults(max);
+			list = query.list();
+			tran.commit();
+		} catch (Exception e) {
+			tran.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			
+		}
+		return list;
+	}
+
+	public int getTotal2() {
+		Session session = null;
+		Transaction tran = null;
+		int total = 0;
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			total = session.createQuery("From  CompanyInfo comp where comp.isCoreComp =0").list().size();			
+			tran.commit();
+		} catch (Exception e) {
+			tran.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			
+		}
+		return total;
+	}
+
+	public CompanyInfo findById(int id)
+	{
+		Session session = null;
+		Transaction tran = null;
+		CompanyInfo ci = new CompanyInfo();
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			ci= (CompanyInfo) session.createQuery("from CompanyInfo comp where comp.id =:id").setInteger("id", id).uniqueResult();			
+			tran.commit();
+		} catch (Exception e) {
+			tran.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			
+		}
+		return ci;
+	}
+
+	public Collection<SMEassessment> findByTime(Date start, Date end , int id)
+	{
+		
+		Session session = null;
+		Transaction tran = null;
+		Collection<SMEassessment>rs = null;
+		try {
+			session = HibernateUtils.getSession();
+			tran = session.beginTransaction();
+			rs=  session.createQuery("from SMEassessment comp where comp.id =:id and comp.time between start and end").setDate("start", start).setDate("end", end).setInteger("id", id).list();			
+			tran.commit();
+		} catch (Exception e) {
+			tran.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			
+		}
+		return rs;
+	}
+	public static void main(String[] args)
+	{
+	   ICompanyInfoDao dao = new CompanyInfoDaoImpl();
+	   dao.findByTime(new Date("2010-08-01"), new Date("2010-11-11"), 1);
+	}
+}

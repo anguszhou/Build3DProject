@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+   <context-param>
+  		<param-name>file</param-name>
+  		<param-value>history.txt</param-value>
+  </context-param>
+    
+  <filter>
+  		<filter-name>EncodingFilter</filter-name>
+  		<filter-class>cn.edu.xjtu.ects.util.CharacterEncodingFilter</filter-class>  		
+  </filter>
+  <filter-mapping>
+  		<filter-name>EncodingFilter</filter-name>
+  		<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>  		
+  		<listener-class>cn.edu.xjtu.ects.util.UserSessionListener</listener-class>
+  </listener>
+  
+  <listener>  		
+  		<listener-class>cn.edu.xjtu.ects.util.ContextListener</listener-class>
+  </listener>
+    
+  <servlet>
+  		<servlet-name>actionServlet</servlet-name>
+  		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>actionServlet</servlet-name>
+  		<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  		<servlet-name>errorServlet</servlet-name>
+  		<servlet-class>com.ambow.ects.handler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>errorServlet</servlet-name>
+  		<url-pattern>/servlet/errorServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  		<servlet-name>loginServlet</servlet-name>
+  		<servlet-class>cn.edu.xjtu.ects.web.AsynLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>loginServlet</servlet-name>
+  		<url-pattern>*.AsynLogin</url-pattern>
+  </servlet-mapping>
+</web-app>

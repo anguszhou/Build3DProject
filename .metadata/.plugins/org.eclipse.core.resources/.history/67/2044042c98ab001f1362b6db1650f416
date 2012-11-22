@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>	
+	<title>Consultant</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<%@ page contentType="text/html; charset=UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+</head>
+<body>	
+   <div id="mainPan1">
+	  
+	   <div class="right">
+	    <div id="rightPan">
+		  <ul>
+			<c:forEach items="${warninfos}" var="warninfo">
+	         	<div>
+	        	 	<li><a href="${pageContext.request.contextPath}/productDetail.do?productId=${warninfo.smeassess.companyinfo.id }">${warninfo.smeassess.companyinfo.name}</a></li>
+			 	</div>				         
+          </c:forEach>        
+		</ul>
+	   
+		</div>
+	</div>
+  </div>
+</body>
+</html>

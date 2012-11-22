@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+
+.text001{ font-size:24px; color:#990099; font-weight:bold;}
+.text002{ font-size:14px; color:#990099; }
+.text003{ font-size:12px; color:#000000; font-weight:bold;}
+.text004{ font-size:18px; color:#990099;}
+.text005{ font-size:18px; color:#000000; font-weight:bold;}
+.text006{ font-size:14px; color:#990099; font-weight:bold;}
+
+.text007{ color:#ffffff; font-weight:bold;}
+.text008{ font-size:13px;}
+.text009{ font-size:14px; color:#e21919; font-weight:bold;}
+.text010{ font-size:14px; font-weight:bold; color:#116e86;}
+.text011{ font-size:14px; font-weight:bold; color:#6e4242;}
+.text012{ font-size:30px; font-weight:bold; line-height:40px; }
+
+
+.backgroud001{ background-color:#edd8ff;}
+
+.s-chk{
+	background-color:#edd8ff;
+	width:70px;
+	border-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: #990099;
+}
+.s-title{ background-color:#edd8ff; width:550px;
+	border-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: #990099;}
+.s-price{ background-color:#edd8ff; width:100px;
+	border-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: #990099;}
+.s-amount{ background-color:#edd8ff; width:100px;
+	border-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: #990099;}
+.s-total{ background-color:#edd8ff; width:100px;
+	border-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: #990099;}
+.s-del{
+	background-color:#edd8ff;
+	width:80px;
+	border-bottom-style: solid;
+	border-bottom-color: #990099;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;
+	color: #FFFFFF;
+}
+
+.bg03{ background-repeat:repeat-x; background-image:url(../images/index_05.gif);}
+.m-00{ background-repeat:repeat-x; background-image:url(image/m-00.gif);}
+  
+.m-01{ background-color:#FFFFFF;}

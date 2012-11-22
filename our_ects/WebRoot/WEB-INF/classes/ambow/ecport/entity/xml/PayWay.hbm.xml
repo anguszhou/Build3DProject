@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping  package="com.ambow.ects.entity" >
+
+	<class name="PayWay"  table="PAYWAY"  >
+		<id name="id" column="payway_id" unsaved-value="null" >
+			<generator class="native"/>
+		</id>
+        <property name="payStyle"                 column="payStyle" ></property>
+        
+    </class>
+    
+    <class name="OrderStatus"  table="OrderStatus"  >
+		<id name="id" column="orderStatus_id" unsaved-value="null" >
+			<generator class="native"/>
+		</id>
+        <property name="name"                 column="name" ></property>
+        <property name="descriptions"                 column="descriptions" ></property>
+        
+    </class>
+    
+    <class name="OrderLine"  table="OrderLine"  >
+		<id name="id" column="OrderLine_id" unsaved-value="null" >
+			<generator class="native"/>
+		</id>
+        <property name="amount"                 column="amount" ></property>
+       
+       <many-to-one  name="product" column="product_id"  fetch="join"
+        />
+       <many-to-one  name="order"   column="order_id"   fetch="join"  />
+       
+    </class>
+    
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+package xjtu.citi.dao;
+
+import java.util.Collection;
+import java.util.Date;
+
+import xjtu.citi.entity.CompanyInfo;
+import xjtu.citi.entity.SMEassessment;
+
+public interface ICompanyInfoDao {
+	public Collection findCore(int start, int max);
+	public int getTotal();
+	public Collection findSME(int start, int max);
+	public int getTotal2();
+	public CompanyInfo findById(int id);
+	public Collection<SMEassessment> findByTime(Date start , Date end);
+}

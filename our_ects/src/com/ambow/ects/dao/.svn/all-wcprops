@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/notepad/!svn/ver/394/ects/src/com/ambow/ects/dao
+END
+ICommentDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/notepad/!svn/ver/391/ects/src/com/ambow/ects/dao/ICommentDao.java
+END
+IOrderDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/notepad/!svn/ver/84/ects/src/com/ambow/ects/dao/IOrderDao.java
+END
+IUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/notepad/!svn/ver/295/ects/src/com/ambow/ects/dao/IUserDao.java
+END
+IProductDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/notepad/!svn/ver/356/ects/src/com/ambow/ects/dao/IProductDao.java
+END

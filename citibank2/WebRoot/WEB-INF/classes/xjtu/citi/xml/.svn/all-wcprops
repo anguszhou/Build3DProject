@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml
+END
+Account.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/Account.hbm.xml
+END
+Parameter.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/Parameter.hbm.xml
+END
+UserType.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/UserType.hbm.xml
+END
+CompanyInfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/CompanyInfo.hbm.xml
+END
+IndustryType.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/IndustryType.hbm.xml
+END
+TransInfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/TransInfo.hbm.xml
+END
+WarnInfo.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/WarnInfo.hbm.xml
+END
+Feedback.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/Feedback.hbm.xml
+END
+CompanyUser.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/CompanyUser.hbm.xml
+END
+WarnParameter.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/WarnParameter.hbm.xml
+END
+BankUser.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/BankUser.hbm.xml
+END
+SMEassessment.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/SMEassessment.hbm.xml
+END
+hibernate.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/xml/hibernate.cfg.xml
+END

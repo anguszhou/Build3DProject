@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+<session-factory>
+
+	<property name="show_sql">true</property>
+	<property name="format_sql">true</property>
+
+	<property name="dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<property name="connection.url">
+		jdbc:mysql://localhost:3306/ects
+	</property>
+	<property name="connection.username">root</property>
+	<property name="connection.password">1234</property>
+
+	<property name="cache.provider_class">
+		org.hibernate.cache.NoCacheProvider
+	</property>
+	<mapping resource="cn/edu/xjtu/ects/xml/Comment.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/Product.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/Admin.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/Category.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/ContactInfo.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/ProductClass.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/Property.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/Seller.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/User.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/Starrating.hbm.xml" />
+	<mapping resource="cn/edu/xjtu/ects/xml/Notice.hbm.xml" />
+
+</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,30 @@
+<%@ page contentType="text/html;charset=gb2312" pageEncoding="GB2312"%> 
+<%@ page import="xjtu.citi.chart.ScoreHistoryChart"%>
+<%@ page import="xjtu.citi.chart.IndustryRankHistoryChart"%>
+<%@ page import="xjtu.citi.chart.RankHistoryChart"%>
+<%@ page import="xjtu.citi.chart.RiskLevelHistoryChart"%>
+<%@ page import = "java.io.PrintWriter" %>
+<% ScoreHistoryChart scoreChart=new ScoreHistoryChart(); 
+String fileName_score=scoreChart.getScoreChart(session,new PrintWriter(out),1); 
+String graphURL_score = request.getContextPath() + "/servlet/DisplayChart?filename=" + fileName_score; %> 
+<% IndustryRankHistoryChart inRankChart=new  IndustryRankHistoryChart();
+String fileName_inRank=inRankChart.getInRankChart(session,new PrintWriter(out),1);
+String graphURL_inRank = request.getContextPath() + "/servlet/DisplayChart?filename=" + fileName_inRank; %>
+<% RankHistoryChart RankChart=new  RankHistoryChart();
+String fileName_Rank=RankChart.getRankChart(session,new PrintWriter(out),1);
+String graphURL_Rank = request.getContextPath() + "/servlet/DisplayChart?filename=" + fileName_Rank; %>
+<% RiskLevelHistoryChart RiskChart=new  RiskLevelHistoryChart();
+String fileName_Risk=RiskChart.getRiskLevelChart(session,new PrintWriter(out),1);
+String graphURL_Risk = request.getContextPath() + "/servlet/DisplayChart?filename=" + fileName_Risk; %>
+<html> 
+<head> 
+<title> JFreeChartÊ¹ÓÃÀı×Ó</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+</head> 
+<body> 
+<img src="<%= graphURL_score %>" width=500 height=300 border=0 usemap="<%= fileName_score %>">
+<img src="<%= graphURL_inRank %>" width=500 height=300 border=0 usemap="<%= fileName_inRank %>">
+<img src="<%= graphURL_Rank %>" width=500 height=300 border=0 usemap="<%= fileName_Rank %>">  
+<img src="<%= graphURL_Risk %>" width=500 height=300 border=0 usemap="<%= fileName_Risk %>">
+</body> 
+</html> 

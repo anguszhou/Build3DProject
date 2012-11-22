@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<title>Consultant</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<%@ page contentType="text/html; charset=UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> 
+	<script type="text/javascript" src="js/custom.js"></script>
+	<script type="text/javascript" src="js/ymPrompt.js"></script>
+	<script type="text/javascript" src="js/jquery-1.2.1.min.js"></script>
+	<script type="text/javascript"> 
+		$(function(){
+			// 预设显示第一个 Tab
+			var _showTab = 0;
+			$('.abgne_tab').each(function(){
+				// 目前的页签区号
+				var $tab = $(this);
+	 
+				$('ul.tabs li', $tab).eq(_showTab).addClass('active');
+				$('.tab_content', $tab).hide().eq(_showTab).show();
+				
+				
+				$('ul.tabs li', $tab).click(function() {
+				
+					var $this = $(this),
+						_clickTab = $this.find('a').attr('href');
+					
+					$this.addClass('active').siblings('.active').removeClass('active');
+					
+					$(_clickTab).stop(false, true).fadeIn().siblings().hide();
+	 
+					return false;
+				}).find('a').focus(function(){
+					this.blur();
+				});
+			});
+		});
+	</script> 
+</head>
+<script language="JavaScript">
+function BrowseFolder(){   
+try{   
+var Message = "请选择文件夹"; //选择框提示信息   
+var Shell = new ActiveXObject( "Shell.Application" );   
+var Folder = Shell.BrowseForFolder(0,Message,0x0040,0x11);//第四个参数，为0x11或17表示起始目录为：我的电脑   
+//var Folder = Shell.BrowseForFolder(0,Message,0); //起始目录为：桌面   
+if(Folder != null){   
+    Folder = Folder.items(); // 返回 FolderItems 对象   
+    Folder = Folder.item(); // 返回 Folderitem 对象   
+    Folder = Folder.Path;   // 返回路径   
+    if(Folder.charAt(Folder.length-1) != "\\"){   
+      Folder = Folder + "\\";   
+    }   
+    document.getElementById("savePath").value=Folder;   
+    return Folder;   
+}   
+}catch(e){    
+alert(e.message);   
+}   
+}
+</script>
+
+<body>
+<div id="mainPan">
+  <div class="header">
+		<jsp:include page="header.jsp"></jsp:include>
+	</div>
+	<div class="left">
+		<jsp:include page="left.jsp"></jsp:include>
+	</div>
+  	<div class="middle">
+  		<div id ="middlePan">
+	    <div class="abgne_tab"> 
+	    	<ul class="tabs"> 
+				<li><a href="#tab1">新增用户</a></li> 
+				<li><a href="#tab2">用户查看</a></li> 
+				<li><a href="#tab3">数据备份</a></li> 
+			</ul> 
+			<table></table>
+			<div class="tab_container"> 
+				<div id="tab1" class="tab_content"> 
+					<form name="form1" style="padding-left: 5%;" action="${pageContext.request.contextPath}/peopleAdd.do" method="post">
+		<table>
+			<tr>
+				<td width="130" height="35">选择员工权限：</td>
+				<td>
+					<select name="usertype" >
+						<option value="信贷员" selected="selected">
+							信贷员
+						</option>
+	
+						<option value="风险评估员">
+							风险评估员
+						</option>
+	
+						<option value="后台管理员">
+							后台管理员
+						</option>
+
+					</select>
+				</td>
+			</tr>
+		
+			<tr>
+				<td width="130" height="35" >
+					员工用户名：
+				</td>
+					<td width="440">
+						<input id="username" name="userName" onblur="check_userName(this,'regist_userName_message');"/>
+						<font id="regist_userName_message" color="red"></font>
+					</td>
+												
+			</tr>
+			
+			<tr>
+				<td width="130" height="35">
+					密码：
+				</td>
+				<td width="300">
+					<input type="text" name="password" onblur="check_null(this);"/>
+					<font color="red">*密码由6-20个字母或数字组成</font>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="130" height="35">
+					员工工号：
+				</td>
+				<td>
+					<input type="text" size="20" name="worknum" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td height="35">
+					员工姓名：
+				</td>
+				<td>
+					<input type="text" size="20" name="name"  />
+				</td>
+			</tr>
+			
+			<tr>
+				<td height="35">
+					所在部门：
+				</td>
+				<td>
+					<input type="text" size="25" name="department" />
+				</td>
+			</tr>
+						                    
+		</table>
+		
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="确定" style="margin-right:100px;"/>
+											&nbsp;
+				<input type="reset" value="重置" />
+										
+		</form>
+				</div>
+				
+				<div id="tab2" class="tab_content">
+					<div class="details"> 
+						<table align="center" border=1>
+						    <tr align="center">
+								<td width="50"><span>序号</span></td>     
+						        <td width="100"><span>用户名</span></td>
+						        <td width="100"><span>员工姓名</span></td>
+						        <td width="100"><span>所在部门</span></td>
+						        <td width="100"><span>员工号</span></td>
+						        <td width="100"><span>用户类型</span></td>
+						        <td width="50"><span>操作</span></td>     
+						  	</tr>
+							<c:forEach items="${pageController.data}" var="bankuser" varStatus="status">
+							    <tr align="center">      
+							      	<td><span>${status.count}</span></td>
+							        <td><span>${bankuser.username}</span></td>
+							        <td><span>${bankuser.name}</span></td>
+							       	<td><span>${bankuser.department}</span></td>
+							       	<td><span>${bankuser.workNum}</span></td>
+							       	<td><span>${bankuser.usertype.name}</span></td>
+							       	
+							        <td>
+							        	<input type="button" value="删除"
+											onclick="${pageContext.request.contextPath}/deleteUser.do?bankuserId=${bankuser.id}"
+										/>
+									</td>
+							       
+							    </tr>
+							 </c:forEach>  
+		 				</table> 
+		 	
+					     <table align="center">
+					            	共有<font color="red">${pageController.totalRowsAmount}</font>条记录
+					            	共有<font color="red">${pageController.totalPages}</font>页
+					            	当前是第<font color="red">${pageController.currentPage}</font>页
+					            	<br/><br/>
+					                <a href="${pageContext.request.contextPath}/peoplelist.do?destId=1">首页</a>
+					                <c:if test="${pageController.hasPrevious}">
+					            		<a href="${pageContext.request.contextPath}/peoplelist.do?destId=${pageController.currentPage-1}">上一页</a>
+					            	</c:if>
+					            		<span class="current">
+											<select id="pageSelector" style="font-size:12px;padding-top:3px;"
+												onchange="location='${pageContext.request.contextPath}/peoplelist.do?destId='+this.value">
+												<c:out value="${pageSelector}" escapeXml="false"></c:out>
+											</select>
+										</span>				
+									<c:if test="${pageController.hasNext}">
+					            		<a href="${pageContext.request.contextPath}/peoplelist.do?destId=${pageController.currentPage+1}">下一页</a>
+					            	</c:if>
+					            	<a href="${pageContext.request.contextPath}/peoplelist.do?destId=${pageController.totalPages}">最后一页</a>
+					     </table> 
+		      		</div>
+				</div>
+				
+				<div id="tab3" class="tab_content"> 
+				  	<form name="form1" style="padding-left: 5%;" action="${pageContext.request.contextPath}/backup.do" method="post">
+		
+		
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="数据备份" style="margin-right:100px;"/>
+				<input type="button" value="选择路径" onclick="BrowseFolder()" />
+											<input type="text" id="savePath" name="savePath" />
+											&nbsp;
+				
+										
+		</form>
+			  	</div>
+			  
+			</div>
+	    </div>
+	    </div>
+  	</div>
+  	<div class="right">
+		<jsp:include page="right.jsp"></jsp:include>
+		</div>
+		
+		<div class="footer">
+		<jsp:include page="footer.jsp"></jsp:include>
+		</div>
+  
+  
+</div>
+</body>
+</html>

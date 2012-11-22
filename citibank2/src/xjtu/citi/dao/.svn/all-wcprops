@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/citibank/!svn/ver/98/src/xjtu/citi/dao
+END
+ICompanyInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/citibank/!svn/ver/98/src/xjtu/citi/dao/ICompanyInfoDao.java
+END
+IWarnInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/dao/IWarnInfoDao.java
+END
+IFeedbackDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/dao/IFeedbackDao.java
+END
+ICompanyUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/citibank/!svn/ver/2/src/xjtu/citi/dao/ICompanyUserDao.java
+END
+IWarnParameterDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/citibank/!svn/ver/1/src/xjtu/citi/dao/IWarnParameterDao.java
+END
+IBankUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/dao/IBankUserDao.java
+END
+ISMEassessmentDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/citibank/!svn/ver/50/src/xjtu/citi/dao/ISMEassessmentDao.java
+END
+IParameterDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/citibank/!svn/ver/1/src/xjtu/citi/dao/IParameterDao.java
+END
+IUserTypeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/citibank/!svn/ver/1/src/xjtu/citi/dao/IUserTypeDao.java
+END

@@ -1,0 +1,84 @@
+package xjtu.citi.impl;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import xjtu.citi.dao.IWarnInfoDao;
+import xjtu.citi.entity.SMEassessment;
+import xjtu.citi.entity.WarnInfo;
+import xjtu.citi.util.HibernateUtils;
+
+public class WarnInfoDaoImpl implements IWarnInfoDao {
+
+	public double calWarnValue() {
+		
+		double result = 0;
+		WarnInfo warninfo = new WarnInfo();
+		result = (warninfo.getLatevalue() - warninfo.getPrevalue())/warninfo.getPrevalue();
+		return result;
+		
+	}
+
+	public Boolean isOverLimited() {
+		
+		IWarnInfoDao dao = new WarnInfoDaoImpl();
+		WarnInfo warninfo = new WarnInfo();
+		double limited = warninfo.getWarnpara().getValue();
+		if(dao.calWarnValue() >= limited){
+			return true;
+		}
+		return false;
+		
+	}
+
+	public void addWarnInfo() {
+		
+		Session   session = null;
+		Transaction  tran = null;
+		
+		session = HibernateUtils.getSession();
+		tran = session.beginTransaction();
+		
+		/*Connection conn = null;		
+		Statement st = null;		
+		ResultSet rs = null;
+	    try{
+	    	Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/citi", "root", "1234");	
+			st = conn.createStatement();
+			String sql = "select * from SMEassessment p3 where p3.time=(select 1 p1.time from (select top 2 p2.time from SMEassessment p2 order by p2.time desc) order by p1.time asc)";
+			rs = st.executeQuery(sql);*/
+			
+			Collection<SMEassessment>pre = (Collection<SMEassessment>) session.createQuery("from SMEassessment p1 where p1.time=(select max(p2.time) from SMEassessment p2)").list();
+			Collection<SMEassessment>d = (Collection<SMEassessment>) session.createQuery("from Parameter p2  group by p2.time order by p2.time desc").setMaxResults(2).list();
+			//Date d = (Date) session.createQuery("select max(time) from (select p2.time from SMEassessment p2 order by p2.time desc) ").uniqueResult();
+			//Collection<SMEassessment>late = (Collection<SMEassessment>) session.createQuery("from SMEassessment p3 where p3.time=(select 1 p1.time from (select top 2 p2.time from SMEassessment p2 order by p2.time desc) order by p1.time asc)").list();
+			for (Iterator iterator = pre.iterator(); iterator.hasNext();)
+			{
+				SMEassessment e = (SMEassessment) iterator.next();
+				System.out.println(e.getId());
+			}
+			System.out.println("~~~~~~~~~~~~~~~~~~~~"+d.toString());
+			for (Iterator iterator = d.iterator(); iterator.hasNext();)
+			{
+				SMEassessment e = (SMEassessment) iterator.next();
+				e.getId()
+			}
+		
+	    
+	}
+	public static void main(String[] args)
+	{
+	   IWarnInfoDao dao = new WarnInfoDaoImpl();
+	   dao.addWarnInfo();
+	}
+}

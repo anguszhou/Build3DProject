@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/citibank/!svn/ver/99/src/xjtu/citi/web
+END
+AsynLogin.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/citibank/!svn/ver/5/src/xjtu/citi/web/AsynLogin.java
+END
+CompanyUserHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/citibank/!svn/ver/98/src/xjtu/citi/web/CompanyUserHandler.java
+END
+BankUserHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/citibank/!svn/ver/102/src/xjtu/citi/web/BankUserHandler.java
+END

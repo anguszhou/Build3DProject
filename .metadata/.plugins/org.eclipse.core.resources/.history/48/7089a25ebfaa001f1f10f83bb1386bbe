@@ -1,0 +1,81 @@
+package xjtu.citi.web;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.actions.MappingDispatchAction;
+
+
+import xjtu.citi.dao.ICompayUserDao;
+import xjtu.citi.entity.CompanyUser;
+import xjtu.citi.exception.ManagerUserException;
+import xjtu.citi.impl.CompanyUserDaoImpl;
+
+
+public class CompanyUserHandler extends MappingDispatchAction{
+
+	public ActionForward companyRegist(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		req.setCharacterEncoding("gbk");
+		resp.setCharacterEncoding("gbk");
+		ICompayUserDao dao = new CompanyUserDaoImpl();
+		CompanyUser user = new CompanyUser();
+		
+		user.setName(req.getParameter("name"));
+		user.setPassword(req.getParameter("password"));
+		user.setTaxnum(req.getParameter("taxnum"));
+		user.setUsername(req.getParameter("username"));
+		
+		try {
+			
+			dao.add(user);
+			
+		} catch (ManagerUserException e) {
+			e.printStackTrace();
+			req.setAttribute("message", "±§Ç¸£¬×¢²áÊ§°Ü£¡");
+			req.setAttribute("success", false);
+			return mapping.findForward("success");
+		}
+		System.out.println("×¢²áµ¥Î»"+user.getName());
+		req.getSession().setAttribute("user", user);
+		req.getSession(true).setAttribute("user",user);	
+		req.setAttribute("message", "¹§Ï²£¬×¢²á³É¹¦£¡");
+		req.setAttribute("success", true);
+		return mapping.findForward("success");
+	}
+	
+	public ActionForward companyModify(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		ICompayUserDao dao = new CompanyUserDaoImpl();
+		CompanyUser user = (CompanyUser)req.getSession().getAttribute("user");
+		
+		user.setName(req.getParameter("name"));
+		user.setPassword(req.getParameter("password"));
+		user.setId(user.getId());
+		try {
+			
+			dao.update(user);
+			
+		} catch (ManagerUserException e) {
+			e.printStackTrace();
+			req.setAttribute("message", "±§Ç¸£¬ÐÅÏ¢ÐÞ¸ÄÊ§°Ü£¡");
+			req.setAttribute("success", false);
+			return mapping.findForward("success");
+		}
+
+		req.getSession().setAttribute("user", user);
+		
+		req.getSession(true).setAttribute("user",user);	
+		req.setAttribute("message", "¹§Ï²£¬ÐÅÏ¢ÐÞ¸Ä³É¹¦£¡");
+		req.setAttribute("success", true);
+				
+		return mapping.findForward("success");
+	}
+	
+	
+}

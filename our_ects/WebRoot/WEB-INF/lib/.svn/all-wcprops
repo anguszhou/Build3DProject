@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/notepad/!svn/ver/96/ects/WebRoot/WEB-INF/lib
+END
+struts.jar
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/struts.jar
+END
+jakarta-oro.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/jakarta-oro.jar
+END
+asm-attrs.jar
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/asm-attrs.jar
+END
+dom4j-1.6.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/dom4j-1.6.1.jar
+END
+jta.jar
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/notepad/!svn/ver/96/ects/WebRoot/WEB-INF/lib/jta.jar
+END
+ehcache-1.2.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/ehcache-1.2.3.jar
+END
+commons-digester.jar
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/commons-digester.jar
+END
+cglib-2.1.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/cglib-2.1.3.jar
+END
+asm.jar
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/asm.jar
+END
+antlr.jar
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/notepad/!svn/ver/96/ects/WebRoot/WEB-INF/lib/antlr.jar
+END
+hibernate3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/hibernate3.jar
+END
+commons-collections-2.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/commons-collections-2.1.1.jar
+END
+antlr-2.7.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/antlr-2.7.6.jar
+END
+mysql-connector-java-5.0.8-bin.jar
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar
+END
+commons-logging-1.0.4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/commons-logging-1.0.4.jar
+END
+commons-fileupload.jar
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/commons-fileupload.jar
+END
+commons-validator.jar
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/commons-validator.jar
+END
+commons-logging.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/commons-logging.jar
+END
+commons-beanutils.jar
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/notepad/!svn/ver/84/ects/WebRoot/WEB-INF/lib/commons-beanutils.jar
+END

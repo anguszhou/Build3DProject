@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/citibank/!svn/ver/90/WebRoot/WEB-INF
+END
+struts-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/citibank/!svn/ver/90/WebRoot/WEB-INF/struts-config.xml
+END
+dwr.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/citibank/!svn/ver/49/WebRoot/WEB-INF/dwr.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/citibank/!svn/ver/49/WebRoot/WEB-INF/web.xml
+END

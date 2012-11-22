@@ -1,0 +1,193 @@
+package sectetcode;
+
+import java.security.NoSuchAlgorithmException;
+import java.security.Security;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+/**
+ * DESº”√‹µƒ£¨Œƒº˛÷–π≤”–¡Ω∏ˆ∑Ω∑®,º”√‹°¢Ω‚√‹
+ * 
+ */
+public class DES {
+    private String Algorithm = "DES";
+    private KeyGenerator keygen;
+    private SecretKey deskey;
+    private Cipher cipher;
+    private byte[] encryptorData;
+    private byte[] decryptorData;
+
+    /**
+     * ≥ı ºªØ DES  µ¿˝
+     */
+    public DES() {
+          init();
+    }
+
+    /**
+     * ≥ı ºªØ DES º”√‹À„∑®µƒ“ª–©≤Œ ˝
+     */
+    public void init() {
+        Security.addProvider(new com.sun.crypto.provider.SunJCE());
+        try {
+               keygen = KeyGenerator.getInstance(Algorithm);
+               byte key[]="313516285".getBytes();
+               deskey=new SecretKeySpec(key,"DES"); 
+             //  deskey = keygen.generateKey();
+               for(int i=0;i<deskey.getEncoded().length;i++){
+            	   System.out.println(deskey.getEncoded()[i]);
+               }
+               cipher = Cipher.getInstance(Algorithm);
+         }
+         catch(NoSuchAlgorithmException ex){
+            ex.printStackTrace();
+        }
+         catch(NoSuchPaddingException ex){
+            ex.printStackTrace();
+        }
+       }
+
+    /**
+     * ∂‘ byte[] Ω¯––º”√‹
+     * @param datasource “™º”√‹µƒ ˝æ›
+     * @return ∑µªÿº”√‹∫Ûµƒ byte  ˝◊È
+     */
+     public byte[] createEncryptor(byte[] datasource) {
+        try {
+         cipher.init(Cipher.ENCRYPT_MODE, deskey);
+             encryptorData = cipher.doFinal(datasource);
+        }
+        catch(java.security.InvalidKeyException ex){
+            ex.printStackTrace();
+        }
+        catch(javax.crypto.BadPaddingException ex){
+            ex.printStackTrace();
+        }
+        catch(javax.crypto.IllegalBlockSizeException ex){
+            ex.printStackTrace();
+        }
+        return encryptorData;
+     }
+     
+     /**
+      * Ω´◊÷∑˚¥Æº”√‹
+      * 
+     * @param datasource
+     * @return
+     * @throws Exception
+     */
+    public byte[] createEncryptor(String datasource) throws Exception{
+        return createEncryptor(datasource.getBytes());
+     }
+     
+    /**
+     * ∂‘ datasource  ˝◊ÈΩ¯––Ω‚√‹
+     * @param datasource “™Ω‚√‹µƒ ˝æ›
+     * @return ∑µªÿº”√‹∫Ûµƒ byte[]
+     */
+     public byte[] createDecryptor(byte[] datasource) {
+        try {
+         cipher.init(Cipher.DECRYPT_MODE, deskey);
+           decryptorData = cipher.doFinal(datasource);
+        }
+        catch(java.security.InvalidKeyException ex){
+            ex.printStackTrace();
+        }
+        catch(javax.crypto.BadPaddingException ex){
+            ex.printStackTrace();
+        }
+        catch(javax.crypto.IllegalBlockSizeException ex){
+            ex.printStackTrace();
+        }
+        return decryptorData;        
+     }
+     
+     /**
+      * 
+      * Ω´ DES º”√‹π˝µƒ byte ˝◊È◊™ªªŒ™◊÷∑˚¥Æ
+      * 
+     * @param dataByte
+     * @return
+     */
+    public String byteToString(byte[] dataByte)
+     {      
+      String returnStr = null;
+         BASE64Encoder be = new BASE64Encoder();
+         returnStr = be.encode(dataByte);
+         return returnStr;      
+     }
+     /**
+      * 
+      * Ω´◊÷∑˚¥Æ◊™ªªŒ™DESÀ„∑®ø…“‘Ω‚√‹µƒbyte ˝◊È
+      * 
+     * @param dataByte
+     * @return
+     * @throws Exception
+     */
+    public  byte[] stringToByte(String datasource)throws Exception  {         
+         BASE64Decoder bd = new BASE64Decoder();
+         byte[] sorData = bd.decodeBuffer(datasource);        
+         return sorData;     
+     }
+     /**
+      *  ‰≥ˆ byte ˝◊È
+      * 
+     * @param data
+     */
+    public void printByte(byte[] data)
+     {
+     System.out.println("*********ø™ º ‰≥ˆ◊÷Ω⁄¡˜**********"); 
+     System.out.println("◊÷Ω⁄¡˜: "+data.toString());
+      for(int i = 0 ; i < data.length ; i++){
+       System.out.println("µ⁄ "+i+"◊÷Ω⁄Œ™£∫"+ data[i]);
+      }
+      System.out.println("*********Ω· ¯ ‰≥ˆ◊÷Ω⁄¡˜**********");
+     }
+    
+     public static void main(String args[])throws Exception
+     {
+      //º”√‹‘¥ ˝æ›
+     String encryptorString = "èt»nwb·Ü$W:?H¥Û1{œ•?óõÉAi4˝∞L◊v-ª⁄˙q?a?åΩÃblîyòë?≈÷ÔÙÜ˙¬ü˝…„g?ﬂVÉY·Mlvô≠∫û<{@8Y ŸQ+Îï?£ñNãF‰≤˙XK'?‘\”B5'¬œ§L?7";     
+
+      DES des  = new DES();
+      
+      //º”√‹ªÒµ√µƒbyte ˝◊È
+      byte[] encryptorByte  = des.createEncryptor(encryptorString);
+      
+      //º”√‹∫Ûµƒbyte[] ◊™ªª¿¥µƒ◊÷∑˚¥Æ
+      String byteToString = des.byteToString(encryptorByte);        
+      
+      System.out.println("º”√‹«∞µƒ ˝æ›£∫"+encryptorString);
+      System.out.println("º”√‹∫Ûµƒbyte[]");
+      des.printByte(encryptorByte);
+      System.out.println("º”√‹∫Ûµƒ ˝æ›£∫"+byteToString);
+      
+      /*
+       * ø…“‘∂‘◊÷∑˚¥ÆΩ¯––“ªœµ¡–µƒ¥¶¿Ì
+       */
+      
+      //Ω‚√‹∫Ûµƒ◊÷∑˚¥Æ
+     String decryptorString = null;
+     
+      //Ω´byteToString◊™ªªŒ™‘≠¿¥µƒbyte[]
+      byte[] stringToByte = des.stringToByte(byteToString);
+      //Ω´stringToByteΩ‚√‹∫Ûµƒbyte[]
+      byte[]decryptorByte = des.createDecryptor(stringToByte);
+      System.out.println("Ω‚√‹∫Û"+des.byteToString(decryptorByte)); 
+      //Ω‚√‹∫Ûµƒbyte[]◊™ªªŒ™‘≠¿¥µƒ◊÷∑˚¥Æ
+      decryptorString = new String(decryptorByte);
+      
+      System.out.println("Ω‚√‹«∞µƒ ˝æ›£∫"+byteToString);
+      System.out.println("◊™ªª¿¥µƒΩ‚√‹µƒbyte[]");
+      des.printByte(stringToByte);
+      System.out.println("Ω‚√‹∫Ûµƒ ˝æ›£∫"+decryptorString);
+   }
+
+     }
+

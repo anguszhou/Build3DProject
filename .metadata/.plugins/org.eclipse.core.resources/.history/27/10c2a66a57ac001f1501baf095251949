@@ -1,0 +1,313 @@
+/*
+MySQL Data Transfer
+Source Host: localhost
+Source Database: citi
+Target Host: localhost
+Target Database: citi
+Date: 2010-8-5 15:07:57
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for account
+-- ----------------------------
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE `account` (
+  `id` int(11) NOT NULL auto_increment,
+  `companyid` int(11) NOT NULL,
+  `account` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for bankuser
+-- ----------------------------
+DROP TABLE IF EXISTS `bankuser`;
+CREATE TABLE `bankuser` (
+  `id` int(11) NOT NULL auto_increment,
+  `usertypeid` int(4) NOT NULL,
+  `workNum` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `department` varchar(30) default NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for companyinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `companyinfo`;
+CREATE TABLE `companyinfo` (
+  `id` int(11) NOT NULL auto_increment,
+  `companyName` varchar(50) NOT NULL,
+  `taxNum` varchar(20) NOT NULL,
+  `registFund` double(15,0) NOT NULL,
+  `legal` varchar(20) NOT NULL,
+  `telephone` varchar(13) default NULL,
+  `isListedComp` int(4) default NULL,
+  `isCoreComp` int(4) default NULL,
+  `industrytypeid` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for companyuser
+-- ----------------------------
+DROP TABLE IF EXISTS `companyuser`;
+CREATE TABLE `companyuser` (
+  `id` int(11) NOT NULL auto_increment,
+  `companyName` varchar(50) NOT NULL,
+  `taxNum` varchar(20) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for feedback
+-- ----------------------------
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL auto_increment,
+  `companyid` int(20) NOT NULL,
+  `time` date NOT NULL,
+  `reviewer` int(4) NOT NULL,
+  `description` varchar(1000) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for industrytype
+-- ----------------------------
+DROP TABLE IF EXISTS `industrytype`;
+CREATE TABLE `industrytype` (
+  `id` int(11) NOT NULL auto_increment,
+  `industrycode` int(6) NOT NULL,
+  `industryname` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for parameter
+-- ----------------------------
+DROP TABLE IF EXISTS `parameter`;
+CREATE TABLE `parameter` (
+  `id` int(11) NOT NULL auto_increment,
+  `cashflow` double(6,5) default NULL,
+  `registfund` double(6,5) default NULL,
+  `listedcomp` double(20,2) default NULL,
+  `corecomp` double(6,5) default NULL,
+  `ain` double(6,5) default NULL,
+  `aout` double(6,5) default NULL,
+  `bin` double(6,5) default NULL,
+  `bout` double(6,5) default NULL,
+  `modifiedtime` date default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for smeassessment
+-- ----------------------------
+DROP TABLE IF EXISTS `smeassessment`;
+CREATE TABLE `smeassessment` (
+  `id` int(11) NOT NULL auto_increment,
+  `risklevel` varchar(4) default NULL,
+  `score` double(11,0) default NULL,
+  `rank` int(11) default NULL,
+  `industryrank` int(11) default NULL,
+  `time` date default NULL,
+  `companyid` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for transinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `transinfo`;
+CREATE TABLE `transinfo` (
+  `id` int(11) NOT NULL auto_increment,
+  `accountIn` varchar(20) NOT NULL,
+  `accountOut` varchar(20) NOT NULL,
+  `amount` double(15,0) default NULL,
+  `time` date default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for usertype
+-- ----------------------------
+DROP TABLE IF EXISTS `usertype`;
+CREATE TABLE `usertype` (
+  `id` int(4) NOT NULL auto_increment,
+  `typename` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for warninfo
+-- ----------------------------
+DROP TABLE IF EXISTS `warninfo`;
+CREATE TABLE `warninfo` (
+  `id` int(11) NOT NULL auto_increment,
+  `time` date default NULL,
+  `prevalue` double(11,0) default NULL,
+  `latevalue` double(11,0) default NULL,
+  `description` varchar(100) NOT NULL,
+  `warnparameterid` int(11) NOT NULL,
+  `smeassessid` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Table structure for warnparameter
+-- ----------------------------
+DROP TABLE IF EXISTS `warnparameter`;
+CREATE TABLE `warnparameter` (
+  `id` int(11) NOT NULL auto_increment,
+  `value` double(6,3) default NULL,
+  `modifedtime` date default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records 
+-- ----------------------------
+INSERT INTO `account` VALUES ('1', '1', '0000000000000001');
+INSERT INTO `account` VALUES ('2', '2', '0000000000000002');
+INSERT INTO `account` VALUES ('3', '3', '0000000000000003');
+INSERT INTO `account` VALUES ('4', '4', '0000000000000004');
+INSERT INTO `account` VALUES ('5', '5', '0000000000000005');
+INSERT INTO `account` VALUES ('6', '6', '0000000000000006');
+INSERT INTO `account` VALUES ('7', '7', '0000000000000007');
+INSERT INTO `account` VALUES ('8', '3', '0000000000000008');
+INSERT INTO `account` VALUES ('9', '2', '0000000000000009');
+INSERT INTO `account` VALUES ('10', '8', '0000000000000010');
+INSERT INTO `account` VALUES ('11', '9', '0000000000000011');
+INSERT INTO `account` VALUES ('12', '10', '0000000000000012');
+INSERT INTO `account` VALUES ('13', '11', '0000000000000013');
+INSERT INTO `account` VALUES ('14', '4', '0000000000000014');
+INSERT INTO `account` VALUES ('15', '12', '0000000000000015');
+INSERT INTO `account` VALUES ('16', '13', '0000000000000016');
+INSERT INTO `account` VALUES ('17', '14', '0000000000000017');
+INSERT INTO `account` VALUES ('18', '15', '0000000000000018');
+INSERT INTO `account` VALUES ('19', '16', '0000000000000019');
+INSERT INTO `account` VALUES ('20', '17', '0000000000000020');
+INSERT INTO `account` VALUES ('21', '2', '0000000000000021');
+INSERT INTO `account` VALUES ('22', '18', '0000000000000022');
+INSERT INTO `account` VALUES ('23', '2', '0000000000000023');
+INSERT INTO `account` VALUES ('24', '19', '0000000000000024');
+INSERT INTO `account` VALUES ('25', '20', '0000000000000025');
+INSERT INTO `account` VALUES ('26', '3', '0000000000000026');
+INSERT INTO `account` VALUES ('27', '21', '0000000000000027');
+INSERT INTO `account` VALUES ('28', '22', '0000000000000028');
+INSERT INTO `account` VALUES ('29', '23', '0000000000000029');
+INSERT INTO `account` VALUES ('30', '24', '0000000000000030');
+INSERT INTO `account` VALUES ('31', '25', '0000000000000031');
+INSERT INTO `account` VALUES ('32', '26', '0000000000000032');
+INSERT INTO `account` VALUES ('33', '27', '0000000000000033');
+INSERT INTO `account` VALUES ('34', '28', '0000000000000034');
+INSERT INTO `bankuser` VALUES ('1', '1', '233', '娜娜', '信贷部', 'nana', '1234');
+INSERT INTO `bankuser` VALUES ('2', '2', '542', '鑫鑫', '风险控制部', 'xinxin', '1234');
+INSERT INTO `bankuser` VALUES ('3', '3', '125', '聪聪', '科技运营部', 'congcong', '1234');
+INSERT INTO `companyinfo` VALUES ('1', '西安科技有限责任公司', '10000000', '2000000', '周聪', '13467856399', '0', null, '7');
+INSERT INTO `companyinfo` VALUES ('2', '西安三星有限责任公司', '10000023', '50000000', '杨峰', '13456789678', '0', null, '2');
+INSERT INTO `companyinfo` VALUES ('3', '红叶有限责任公司', '20000340', '2100000', '王珏鑫', '82656667', '0', null, '2');
+INSERT INTO `companyinfo` VALUES ('4', '腾讯股份有限公司', '30000876', '800000000', '窦辉', '67658930', '0', null, '3');
+INSERT INTO `companyinfo` VALUES ('5', '雁塔有限责任公司', '23000012', '2300000', '汪雅妮', '15823636952', '0', null, '4');
+INSERT INTO `companyinfo` VALUES ('6', '太白股份有限公司', '56236594', '50000000', '付晨', '15923665845', '1', null, '3');
+INSERT INTO `companyinfo` VALUES ('7', '西安风险投资有限责任公司', '23656560', '1000000', '毛娜', '82652230', '0', null, '3');
+INSERT INTO `companyinfo` VALUES ('8', '柯达股份有限公司', '56945512', '56000000', '苏洁', '86521345', '0', null, '3');
+INSERT INTO `companyinfo` VALUES ('9', '东方科技有限责任公司', '45681318', '1264000', '王晓玉', '65682132', '0', null, '13');
+INSERT INTO `companyinfo` VALUES ('10', '东风股份有限公司', '98564215', '100000000', '孔晓雨', '13569845656', '1', null, '7');
+INSERT INTO `companyinfo` VALUES ('11', '西部投资股份有限公司', '15466512', '230000000', '李宁', '95623654', '1', null, '11');
+INSERT INTO `companyinfo` VALUES ('12', '西欧机械有限责任公司', '58962365', '5100000', '方达', '96548569', '0', null, '4');
+INSERT INTO `companyinfo` VALUES ('13', '恒大地产股份有限公司', '85962365', '82100000', '夏雨荷', '58168320', '0', null, '5');
+INSERT INTO `companyinfo` VALUES ('14', '宝钢控股集团', '85945612', '3100000000', '谢林', '49956123', '1', null, '4');
+INSERT INTO `companyinfo` VALUES ('15', '鞍山钢铁集团', '46561848', '1200000000', '杨东方', '96485551', '1', null, '9');
+INSERT INTO `companyinfo` VALUES ('16', '小肥羊餐饮股份有限公司', '12468514', '60000000', '王秀丽', '13594687897', '1', null, '9');
+INSERT INTO `companyinfo` VALUES ('17', '西开肥牛控股集团', '85946123', '40000000', '牛建国', '85646523', '1', null, '9');
+INSERT INTO `companyinfo` VALUES ('18', '小天鹅集团', '85623652', '100000000', '魏建林', '15465512321', '1', null, '5');
+INSERT INTO `companyinfo` VALUES ('19', '中国石油控股集团', '54623654', '12000000000', '石美琳', '94561324', '1', null, '5');
+INSERT INTO `companyinfo` VALUES ('20', '海天有限责任公司', '46568132', '2300000', '海梅', '86451235', '0', null, '7');
+INSERT INTO `companyinfo` VALUES ('21', '新浪科技有限责任公司', '65465321', '4200000', '谢林云', '76865461', '0', null, '5');
+INSERT INTO `companyinfo` VALUES ('22', '美孚石油集团', '48125131', '72000000', '方琳', '89562312', '0', null, '6');
+INSERT INTO `companyinfo` VALUES ('23', '崂山旅游有限责任公司', '54658223', '5620000', '向腊梅', '46465122', '0', null, '3');
+INSERT INTO `companyinfo` VALUES ('24', '西飞国际股份有限公司', '45616812', '12000000', '柳梦梅', '98954223', '0', null, '6');
+INSERT INTO `companyinfo` VALUES ('25', '西安电子有限责任公司', '79843212', '4500000', '云天河', '48621322', '0', null, '11');
+INSERT INTO `companyinfo` VALUES ('26', '成都飞机制造集团', '78121233', '89000000', '欧阳峰', '48121239', '0', null, '3');
+INSERT INTO `companyinfo` VALUES ('27', '海尔集团', '78451323', '1200000000', '李晓娜', '89431333', '0', null, '3');
+INSERT INTO `companyinfo` VALUES ('28', '腾飞有限责任公司', '89451309', '3200000', '闵方伟', '89435612', '0', null, '4');
+INSERT INTO `companyuser` VALUES ('1', '西安交大', 'SW12345', 'maona', '1234');
+INSERT INTO `feedback` VALUES ('1', '1', '2009-08-10', '1', '近期应该注意该企业流动性风险');
+INSERT INTO `industrytype` VALUES ('1', '1', '农、林、牧、渔业');
+INSERT INTO `industrytype` VALUES ('2', '2', '采矿业');
+INSERT INTO `industrytype` VALUES ('3', '3', '制造业');
+INSERT INTO `industrytype` VALUES ('4', '4', '电力、燃气及水的生产和供应业');
+INSERT INTO `industrytype` VALUES ('5', '5', '建筑业');
+INSERT INTO `industrytype` VALUES ('6', '6', '交通运输、仓储和邮政业');
+INSERT INTO `industrytype` VALUES ('7', '7', '信息传输、计算机服务和软件业');
+INSERT INTO `industrytype` VALUES ('8', '8', '批发和零售业');
+INSERT INTO `industrytype` VALUES ('9', '9', '住宿和餐饮业');
+INSERT INTO `industrytype` VALUES ('10', '10', '金融业');
+INSERT INTO `industrytype` VALUES ('11', '11', '房地产业');
+INSERT INTO `industrytype` VALUES ('12', '12', '租赁和商务服务业');
+INSERT INTO `industrytype` VALUES ('13', '13', '科学研究、技术服务和地质勘查业');
+INSERT INTO `industrytype` VALUES ('14', '14', '水利、环境、和公共设施管理业');
+INSERT INTO `industrytype` VALUES ('15', '15', '居民服务和其他服务业');
+INSERT INTO `industrytype` VALUES ('16', '16', '教育');
+INSERT INTO `industrytype` VALUES ('17', '17', '卫生、社会保障和社会福利业');
+INSERT INTO `industrytype` VALUES ('18', '18', '文化、体育和娱乐业');
+INSERT INTO `industrytype` VALUES ('19', '19', '公共管理与社会组织');
+INSERT INTO `industrytype` VALUES ('20', '20', '国际组织');
+INSERT INTO `parameter` VALUES ('1', '3.62000', '0.00000', '1.00', '0.00000', '0.00000', '0.00000', '0.00000', '0.00000', '2009-08-09');
+INSERT INTO `transinfo` VALUES ('1', '0000000000000001', '0000000000000010', '5000000', '2010-06-05');
+INSERT INTO `transinfo` VALUES ('2', '0000000000000011', '0000000000000002', '4500000', '2010-06-06');
+INSERT INTO `transinfo` VALUES ('3', '0000000000000006', '0000000000000003', '234444', '2010-06-06');
+INSERT INTO `transinfo` VALUES ('4', '0000000000000004', '0000000000000026', '5000000', '2010-06-07');
+INSERT INTO `transinfo` VALUES ('5', '0000000000000005', '0000000000000013', '850000', '2010-06-08');
+INSERT INTO `transinfo` VALUES ('6', '0000000000000021', '0000000000000006', '700000', '2010-06-09');
+INSERT INTO `transinfo` VALUES ('7', '0000000000000017', '0000000000000007', '9560000', '2010-06-10');
+INSERT INTO `transinfo` VALUES ('8', '0000000000000023', '0000000000000008', '452563', '2010-06-11');
+INSERT INTO `transinfo` VALUES ('9', '0000000000000009', '0000000000000024', '6958422', '2010-06-12');
+INSERT INTO `transinfo` VALUES ('10', '0000000000000010', '0000000000000021', '7856232', '2010-06-13');
+INSERT INTO `transinfo` VALUES ('11', '0000000000000011', '0000000000000019', '586299', '2010-06-14');
+INSERT INTO `transinfo` VALUES ('12', '0000000000000011', '0000000000000020', '4586214', '2010-06-15');
+INSERT INTO `transinfo` VALUES ('13', '0000000000000018', '0000000000000012', '489632', '2010-06-16');
+INSERT INTO `transinfo` VALUES ('14', '0000000000000013', '0000000000000022', '458963', '2010-06-17');
+INSERT INTO `transinfo` VALUES ('15', '0000000000000014', '0000000000000015', '896535', '2010-06-18');
+INSERT INTO `transinfo` VALUES ('16', '0000000000000019', '0000000000000015', '789653', '2010-06-19');
+INSERT INTO `transinfo` VALUES ('17', '0000000000000016', '0000000000000017', '789000', '2010-06-20');
+INSERT INTO `transinfo` VALUES ('18', '0000000000000017', '0000000000000030', '890000', '2010-06-21');
+INSERT INTO `transinfo` VALUES ('19', '0000000000000018', '0000000000000031', '125690', '2010-06-22');
+INSERT INTO `transinfo` VALUES ('20', '0000000000000019', '0000000000000027', '780000', '2010-06-23');
+INSERT INTO `transinfo` VALUES ('21', '0000000000000020', '0000000000000005', '965000', '2010-06-24');
+INSERT INTO `transinfo` VALUES ('22', '0000000000000008', '0000000000000021', '9865000', '2010-06-25');
+INSERT INTO `transinfo` VALUES ('23', '0000000000000006', '0000000000000022', '7896320', '2010-06-26');
+INSERT INTO `transinfo` VALUES ('24', '0000000000000023', '0000000000000009', '856230', '2010-06-27');
+INSERT INTO `transinfo` VALUES ('25', '0000000000000024', '0000000000000012', '783250', '2010-06-28');
+INSERT INTO `transinfo` VALUES ('26', '0000000000000025', '0000000000000026', '9856420', '2010-06-29');
+INSERT INTO `transinfo` VALUES ('27', '0000000000000026', '0000000000000010', '785923', '2010-06-30');
+INSERT INTO `transinfo` VALUES ('28', '0000000000000013', '0000000000000027', '654200', '2010-07-01');
+INSERT INTO `transinfo` VALUES ('29', '0000000000000014', '0000000000000028', '658423', '2010-07-02');
+INSERT INTO `transinfo` VALUES ('30', '0000000000000029', '0000000000000008', '3285620', '2010-07-03');
+INSERT INTO `transinfo` VALUES ('31', '0000000000000030', '0000000000000006', '456123', '2010-07-04');
+INSERT INTO `transinfo` VALUES ('32', '0000000000000015', '0000000000000031', '785423', '2010-07-05');
+INSERT INTO `transinfo` VALUES ('33', '0000000000000004', '0000000000000032', '789230', '2010-07-06');
+INSERT INTO `transinfo` VALUES ('34', '0000000000000002', '0000000000000014', '788512', '2010-07-07');
+INSERT INTO `transinfo` VALUES ('35', '0000000000000033', '0000000000000001', '789223', '2010-07-08');
+INSERT INTO `transinfo` VALUES ('36', '0000000000000008', '0000000000000034', '965823', '2010-07-11');
+INSERT INTO `transinfo` VALUES ('37', '0000000000000017', '0000000000000034', '125863', '2010-07-12');
+INSERT INTO `transinfo` VALUES ('38', '0000000000000015', '0000000000000032', '75823', '2010-07-13');
+INSERT INTO `transinfo` VALUES ('39', '0000000000000032', '0000000000000019', '789653', '2010-07-14');
+INSERT INTO `transinfo` VALUES ('40', '0000000000000025', '0000000000000013', '85236', '2010-07-15');
+INSERT INTO `transinfo` VALUES ('41', '0000000000000024', '0000000000000030', '542630', '2010-07-18');
+INSERT INTO `transinfo` VALUES ('42', '0000000000000023', '0000000000000011', '2544632', '2010-07-19');
+INSERT INTO `transinfo` VALUES ('43', '0000000000000016', '0000000000000025', '123415', '2010-07-20');
+INSERT INTO `transinfo` VALUES ('44', '0000000000000017', '0000000000000027', '65423', '2010-07-22');
+INSERT INTO `transinfo` VALUES ('45', '0000000000000020', '0000000000000033', '85623', '2010-07-22');
+INSERT INTO `usertype` VALUES ('1', '信贷员');
+INSERT INTO `usertype` VALUES ('2', '风险评估员');
+INSERT INTO `usertype` VALUES ('3', '后台管理员');
+INSERT INTO `usertype` VALUES ('4', '企业用户');
+INSERT INTO `warnparameter` VALUES ('1', '0.200', '2010-08-05');

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<action-mappings>
+	
+		<!-- 订单部分 -->
+		<action path="/addOrder" type="com.ambow.ects.web.OrderHandler" parameter="add">
+			<forward name="orderList" path="/orderList.jsp"></forward>
+		</action>
+		<action path="/orderDetail" type="com.ambow.ects.web.OrderHandler" parameter="detail">
+			<forward name="orderDetail" path="/orderDetail.jsp"></forward>
+		</action>
+		<action path="/orderList" type="com.ambow.ects.web.OrderHandler" parameter="list">
+			<forward name="orderList" path="/orderList.jsp"></forward>
+		</action>
+		
+		<!-- 用户部分 -->
+		<action path="/login" type="com.ambow.ects.web.UserHandler" parameter="login">
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="success" path="/success.jsp"></forward>
+		</action>
+		<action path="/logout" type="com.ambow.ects.web.UserHandler" parameter="logout">
+			<forward name="index" path="/index.jsp"></forward>
+		</action>
+		<action path="/regist" type="com.ambow.ects.web.UserHandler" parameter="regist">
+			<forward name="success" path="/success.jsp"></forward>
+			<forward name="index" path="/index.jsp"></forward>
+		</action>
+		<action path="/modify" type="com.ambow.ects.web.UserHandler" parameter="modify">
+			<forward name="success" path="/success.jsp"></forward>
+			<forward name="index" path="/index.jsp"></forward>
+		</action>
+		<action path="/goToAccount" type="com.ambow.ects.web.UserHandler" parameter="goToAccount">
+			<forward name="account" path="/account.jsp"></forward>
+		</action>		
+		
+		<!-- 产品部分 -->
+		<action path="/home" type="com.ambow.ects.web.ProductHandler" parameter="home">
+			<forward name="index" path="/index.jsp"></forward>
+		</action>
+		<action path="/productList" type="com.ambow.ects.web.ProductHandler" parameter="list">
+			<forward name="List" path="/productList.jsp"></forward>
+		</action>
+		<action path="/productList1" type="com.ambow.ects.web.ProductHandler" parameter="list">
+			<forward name="List" path="/productList1.jsp"></forward>
+		</action>
+		<action path="/productDetail" type="com.ambow.ects.web.ProductHandler" parameter="detail">
+			<forward name="detail" path="/productDetail.jsp"></forward>
+		</action>
+		<action path="/addStarRating" type="com.ambow.ects.web.StarRatingHandler" parameter="addStarRating">
+			<forward name="star" path="/productDetail.jsp"></forward>
+		</action>
+		<action path="/addComment" type="com.ambow.ects.web.CommentHandler" parameter="addComment">
+			<forward name="comment" path="/productDetail.jsp"></forward>
+		</action>
+		<action path="/special" type="com.ambow.ects.web.ProductHandler" parameter="special">
+			<forward name="special" path="/special.jsp"></forward>
+		</action>
+		<action path="/newProduct" type="com.ambow.ects.web.ProductHandler" parameter="newProduct">
+			<forward name="newProduct" path="/newProduct.jsp"></forward>
+		</action>
+		<action path="/promotedProduct" type="com.ambow.ects.web.ProductHandler" parameter="promotedProduct">
+			<forward name="promotedProduct" path="/promotedProduct.jsp"></forward>
+		</action>
+		
+		<action path="/search" type="com.ambow.ects.web.ProductHandler" parameter="search">
+			<forward name="searchList" path="/searchList.jsp"></forward>
+		</action>
+
+		<action path="/categoryList" type="com.ambow.ects.web.ProductHandler" parameter="findByCategory">
+			<forward name="categoryList" path="/categoryList.jsp"></forward>
+		</action>
+		<action path="/priceList" type="com.ambow.ects.web.ProductHandler" parameter="findByPrice">
+			<forward name="priceList" path="/priceList.jsp"></forward>
+		</action>
+		<action path="/typeList" type="com.ambow.ects.web.ProductHandler" parameter="findByType">
+			<forward name="typeList" path="/typeList.jsp"></forward>
+		</action>
+		<action path="/sizeList" type="com.ambow.ects.web.ProductHandler" parameter="findBySize">
+			<forward name="sizeList" path="/sizeList.jsp"></forward>
+		</action>		
+		
+		<!-- 购物车部分 -->
+		<action path="/addToCart" type="com.ambow.ects.web.CartHandler" parameter="add">
+			<forward name="cart" path="/cart.jsp"></forward>
+		</action>
+		<action path="/addToCart1" type="com.ambow.ects.web.CartHandler" parameter="add1" >
+			<forward name="productList" path="/productList.jsp"></forward>
+		</action>
+		<action path="/modifyCart" type="com.ambow.ects.web.CartHandler" parameter="modify">
+			<forward name="cart" path="/cart.jsp"></forward>
+		</action>
+		<action path="/deleteCart" type="com.ambow.ects.web.CartHandler" parameter="delete">
+			<forward name="cart" path="/cart.jsp"></forward>
+		</action>
+		<action path="/deleteCart1" type="com.ambow.ects.web.CartHandler" parameter="delete1">
+			<forward name="cart1" path="/productList.jsp"></forward>
+		</action>
+		<action path="/clearCart" type="com.ambow.ects.web.CartHandler" parameter="clear">
+			<forward name="cart" path="/cart.jsp"></forward>
+		</action>
+		
+	</action-mappings>	
+  	
+</struts-config>

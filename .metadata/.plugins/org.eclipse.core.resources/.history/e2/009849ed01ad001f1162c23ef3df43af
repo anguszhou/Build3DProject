@@ -1,0 +1,90 @@
+package xjtu.citi.impl;
+
+import java.util.Collection;
+import java.util.Iterator;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import xjtu.citi.entity.Account;
+import xjtu.citi.entity.CompanyInfo;
+import xjtu.citi.entity.Parameter;
+import xjtu.citi.entity.SMEassessment;
+import xjtu.citi.entity.TransInfo;
+import xjtu.citi.entity.WarnParameter;
+import xjtu.citi.entity.node;
+import xjtu.citi.util.HibernateUtils;
+
+public class DWRSMEAccess
+{
+	public SMEassessment findById(int id)
+	{
+		Session   session = null;
+		Transaction  tran = null;
+		session = HibernateUtils.getSession();
+		tran = session.beginTransaction();
+		
+		SMEassessment sm = (SMEassessment) session.createQuery("from SMEassessment  p1 left join fetch p1.companyinfo where p1.time=(select max(p2.time) from SMEassessment p2) and p1.companyinfo.id =:id").setInteger("id", id).uniqueResult();
+		return sm;		
+	}
+	
+	public Collection<SMEassessment> findBySME(int id)
+	{
+		Session   session = null;
+		Transaction  tran = null;
+		session = HibernateUtils.getSession();
+		tran = session.beginTransaction();
+		
+		Parameter pp = new Parameter();
+		WarnParameter wp = new WarnParameter();
+		Collection<Account> account = null ;
+		Collection<TransInfo> info = null;
+		Collection<CompanyInfo> comp = null;
+
+		Collection<SMEassessment> pre = session.createQuery("from SMEassessment p1 where p1.time=(select max(p2.time) from SMEassessment p2)").list();
+		Collection<SMEassessment> late = null;
+				
+		pp =(Parameter)session.createQuery("from Parameter p1 where p1.time=(select max(p2.time) from Parameter p2)").uniqueResult();
+		wp =(WarnParameter)session.createQuery("from WarnParameter p1 where p1.time=(select max(p2.time) from WarnParameter p2)").uniqueResult();
+		account = session.createQuery("from Account").list();
+		info = session.createQuery("from TransInfo").list();
+		comp = session.createQuery("from CompanyInfo").list();
+		
+		int num = comp.size();
+		double transinfo[][]=new double[num][num];
+		double score[] = new double [num];
+		Collection<node> sme = null;
+		
+		for (Iterator ff = info.iterator(); ff.hasNext();)
+		{
+			TransInfo tt = (TransInfo) ff.next();
+			int in = 0,out = 0 ;
+			for (Iterator aa = account.iterator(); aa.hasNext();)
+			{
+				Account acc = (Account) aa.next();
+				if(acc.getAccount().equals(tt.getAccountIn()))
+				{
+					in = acc.getCompanyinfo().getId();
+				}				
+			}
+			for (Iterator aa = account.iterator(); aa.hasNext();)
+			{
+				Account acc = (Account) aa.next();
+				if(acc.getAccount().equals(tt.getAccountOut()))
+				{
+					out = acc.getCompanyinfo().getId();
+				}
+			}
+			transinfo[out-1][in-1] = tt.getAmount();
+			System.out.println(transinfo[out-1][in-1]+" "+tt.getId()+" "+out+" "+in);
+		}
+		
+		return sme;
+	}
+	
+	public static void main(String[] args)
+	{
+	    DWRSMEAccess dd = new DWRSMEAccess();
+		System.out.println(dd.findBySME(dd.findById(1)));
+	}
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html; charset=GBK" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Jewelry Shop</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+  
+<script language="JavaScript">
+function BrowseFolder(){   
+try{   
+var Message = "请选择文件夹"; //选择框提示信息   
+var Shell = new ActiveXObject( "Shell.Application" );   
+var Folder = Shell.BrowseForFolder(0,Message,0x0040,0x11);//第四个参数，为0x11或17表示起始目录为：我的电脑   
+//var Folder = Shell.BrowseForFolder(0,Message,0); //起始目录为：桌面   
+if(Folder != null){   
+    Folder = Folder.items(); // 返回 FolderItems 对象   
+    Folder = Folder.item(); // 返回 Folderitem 对象   
+    Folder = Folder.Path;   // 返回路径   
+    if(Folder.charAt(Folder.length-1) != "\\"){   
+      Folder = Folder + "\\";   
+    }   
+    document.all.savePath.value=Folder;   
+    return Folder;   
+}   
+}catch(e){    
+alert(e.message);   
+}   
+}
+</script>
+
+<input type = "button" name = "path" size = "100" onclick="Foder()" value="选择文件夹" />
+  
+  <body vLink="#006666" link="#003366" bgColor="#E0F0F8">
+     <tr>
+		<td width="366">
+       		<input  id="productId" name="productId" type="hidden" value="${product.product_id}"  />
+			
+		</td>
+</tr>
+     <form name="upform" action="UploadServlet" method="post" enctype="multipart/form-data">  
+     <input type ="file" name="file1" id="file1"/><br/>        
+              <input type="submit" value="上传" /><br/>    
+               <input type="reset" /> 
+      </form>
+
+<input type="button" value="选择路径" onclick="BrowseFolder()" />
+<input type="text" id="savePath" />
+
+
+</body>
+
+</html>

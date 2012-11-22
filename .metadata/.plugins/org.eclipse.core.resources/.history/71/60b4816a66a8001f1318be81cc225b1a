@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html; charset=GBK" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Jewelry Shop</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+  
+  <body vLink="#006666" link="#003366" bgColor="#E0F0F8">
+     <tr>
+		<td width="366">
+       		<input  id="productId" name="productId" type="hidden" value="${product.product_id}"  />
+			
+		</td>
+</tr>
+     <form   name="form1">   
+  <input   type="hidden"   name="filepath">   
+  <input   type="button"   value="submit"   onclick="smt()">   
+  </form>   
+  <script>   
+  function   smt(){   
+  path   =   prompt("请输入路径","");   
+  if(path!=null&&path!=""){   
+      document.form1.filepath.value=path;   
+      document.form1.submit();   
+  }   
+  }   
+  </script>
+
+     
+
+</body>
+</html>

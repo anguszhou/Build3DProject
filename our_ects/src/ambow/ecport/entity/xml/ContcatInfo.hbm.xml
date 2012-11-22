@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping  package="com.ambow.ects.entity" >
+
+	<class name="ContcatInfo"  table="CONTCATINFO"  >
+		
+		<id name="id" column = "contcatinfo_id" unsaved-value="null">
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+          <property name="street1"                 column="street1" ></property>
+          <property name="street2"                 column="street2" ></property>
+          <property name="city"                    column="city" ></property>
+          <property name="zip"                     column="zip" ></property>
+          <property name="email"                   column="email" ></property>
+          <property name="homePhone"               column="homePhone" ></property>
+          <property name="cellPhone"               column="cellPhone" ></property>
+          <property name="officePhone"               column="officePhone" ></property>
+       
+         <one-to-one name="user" class="User"/>
+            
+         <many-to-one     name="country"
+                          column="country_id"
+                          fetch="join"
+                      />
+      
+         <many-to-one     name="province"
+                          column="province_id"
+                          fetch="join"                          
+                      />
+                      
+    </class>
+</hibernate-mapping>

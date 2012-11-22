@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=GBK" %>
+<%@ page  import="java.io.File"%>
+<%@ page  import="java.net.MalformedURLException"%>
+<%@ page  import="javax.swing.JFileChooser"%>
+
+<%
+
+     JFileChooser jfc = new JFileChooser();
+   jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+   jfc.showOpenDialog(null);
+   File file = jfc.getSelectedFile();
+   String dbpath=new String();
+   try {
+      dbpath=file.toURL().toString().substring(6);
+      dbpath=dbpath.replace("/","\\");
+   
+  } catch (MalformedURLException e) {
+   
+   e.printStackTrace();
+  }
+  String where = java.net.URLEncoder.encode(dbpath,"UTF-8");
+
+  response.sendRedirect("sys_parameter.jsp?dbpath="+where);
+%>

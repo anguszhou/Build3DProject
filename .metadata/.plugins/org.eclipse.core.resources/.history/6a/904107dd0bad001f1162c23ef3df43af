@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<HEAD>
+<link href="style.css" rel="stylesheet" type="text/css" />
+	<%@ page contentType="text/html; charset=GBK"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script language="JavaScript" type="text/javascript"  src="js/wz_jsgraphics.js"></script>
+<script type="text/javascript" src="dwr/engine.js"></script>
+<script type="text/javascript" src="dwr/util.js"></script>
+<script type="text/javascript" src="dwr/interface/DWRSMEAccess.js"></script>
+</HEAD>
+<BODY>
+<div id="myCanvas" style="position:relative;height:0px;width:100%;color:lightblue;">
+<script>
+var jg = new jsGraphics("myCanvas");
+function myDrawFunction()
+{ 
+	var  s_width,s_height;//屏幕宽度和高度
+    s_width =document.body.clientWidth;
+    s_height =document.body.clientHeight;
+    var  s_x,s_y;//中心实体的坐标
+    s_x=s_width/2;
+    s_y=s_height/2;
+	var entity_center=50;//中心实体圆的外切矩形边长
+	var radius_x=s_x+entity_center/2;
+	var radius_y=s_y+entity_center/2;//中心实体圆的圆心坐标
+	var center_name="中心实体";
+	var score=88;
+	//中心实体的绘制
+	jg.drawString("分值："+score, s_x, s_y-entity_center ); 
+	jg.drawString(center_name, s_x, s_y+entity_center ); 
+	jg.setColor("#0000ff");
+	jg.fillEllipse( s_x,s_y,entity_center,entity_center);//画实心圆
+	jg.paint();
+	
+	var num_total=16;//周边实体的总个数
+	entity_center=20;//周边实体的圆的外切矩形边长
+	center_name="周围实体" ;
+	var radius=s_height/3;//分布半径
+	for(var i=1;i<=num_total;i++)
+	{
+		s_x=radius_x+radius*(Math.cos(2*i*Math.PI/num_total));
+		s_y=radius_y+radius*(Math.sin(2*i*Math.PI/num_total));
+		jg.drawString(center_name, s_x, s_y+entity_center ); 
+		jg.drawString("分值："+score, s_x, s_y-entity_center ); 
+		jg.setColor("#0000ff");
+		jg.fillEllipse( s_x,s_y,entity_center,entity_center);//画实心圆
+		jg.drawLine(radius_x,radius_y,s_x+entity_center/2,s_y+entity_center/2);
+		jg.paint();
+	}
+}
+
+myDrawFunction();
+</script>
+</div>
+<div id="myCanvas" style="position:relative;height:0px;width:100%;color:lightblue;">
+ <a href="#">返回首页</a>
+ <input type="text"  name="lo" value="1" size="8"/>
+</div>
+</BODY>
+</HTML>

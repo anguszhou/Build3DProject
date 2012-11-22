@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping  package="xjtu.citi.entity" >
+
+	<class name="IndustryType"  table="industrytype"  >
+		<id name="id" column="id"  >
+			<generator class="native"/>
+		</id>
+        
+       <property name="code"   column="industrycode" ></property>
+       <property name="name"   column="industryname" ></property>
+       
+       <set name="companys"    inverse="true"  fetch="join" lazy="false"  cascade="all"     > 
+			<key column="id"/>
+			<one-to-many class="CompanyInfo"/> 
+        </set> 
+             
+   
+    </class>
+</hibernate-mapping>

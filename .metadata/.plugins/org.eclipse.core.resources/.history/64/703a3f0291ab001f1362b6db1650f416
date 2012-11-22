@@ -1,0 +1,139 @@
+package xjtu.citi.web;
+
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.actions.MappingDispatchAction;
+
+
+import xjtu.citi.util.PageController;
+
+
+import xjtu.citi.dao.ICompanyInfoDao;
+import xjtu.citi.dao.ICompanyUserDao;
+import xjtu.citi.dao.IFeedbackDao;
+import xjtu.citi.entity.CompanyInfo;
+import xjtu.citi.entity.CompanyUser;
+import xjtu.citi.entity.Feedback;
+import xjtu.citi.entity.SMEassessment;
+import xjtu.citi.exception.ManagerUserException;
+import xjtu.citi.impl.CompanyInfoDaoImpl;
+import xjtu.citi.impl.CompanyUserDaoImpl;
+import xjtu.citi.impl.FeedbackDaoImpl;
+
+
+public class CompanyUserHandler extends MappingDispatchAction{
+
+	public ActionForward companyRegist(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		req.setCharacterEncoding("gbk");
+		resp.setCharacterEncoding("gbk");
+		ICompanyUserDao dao = new CompanyUserDaoImpl();
+		CompanyUser user = new CompanyUser();
+		
+		user.setName(req.getParameter("name"));
+		user.setPassword(req.getParameter("password"));
+		user.setTaxnum(req.getParameter("taxnum"));
+		user.setUsername(req.getParameter("username"));
+		
+		try {
+			
+			dao.add(user);
+			
+		} catch (ManagerUserException e) {
+			e.printStackTrace();
+			req.setAttribute("message", "±§Ç¸£¬×¢²áÊ§°Ü£¡");
+			req.setAttribute("success", false);
+			return mapping.findForward("success");
+		}
+		System.out.println("×¢²áµ¥Î»"+user.getName());
+		req.getSession().setAttribute("user", user);
+		req.getSession(true).setAttribute("user",user);	
+		req.setAttribute("message", "¹§Ï²£¬×¢²á³É¹¦£¡");
+		req.setAttribute("success", true);
+		return mapping.findForward("success");
+	}
+	
+	public ActionForward companyModify(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		ICompanyUserDao dao = new CompanyUserDaoImpl();
+		CompanyUser user = (CompanyUser)req.getSession().getAttribute("user");	
+		user.setPassword(req.getParameter("password"));
+		user.setId(user.getId());
+		try {			
+			dao.update(user);		
+		} catch (ManagerUserException e) {
+			e.printStackTrace();
+		}
+
+		req.getSession().setAttribute("user", user);	
+				
+		return mapping.findForward("companyModify");
+	}
+	
+	public ActionForward companyindex(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		
+		IFeedbackDao dao = new FeedbackDaoImpl();
+		CompanyUser user = (CompanyUser)req.getSession().getAttribute("user");
+		System.out.println(user.getName());
+		Collection<Feedback> fd = dao.findById(user.getCompanyinfo().getId());
+
+		req.getSession().setAttribute("user", user);
+		req.getSession().setAttribute("feedbacks",fd);
+		req.getSession().setAttribute("companginfo", user.getCompanyinfo());
+        req.getSession().setAttribute("companyinfoId", user.getCompanyinfo().getId());
+		return mapping.findForward("companyindex");
+	}
+	
+	public ActionForward feedback(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		Feedback fd = new Feedback();
+		Date date = new Date();
+		String ds = req.getParameter("description");
+		CompanyUser user = (CompanyUser) req.getSession().getAttribute("user");
+		ICompanyInfoDao dao = new CompanyInfoDaoImpl();
+		CompanyInfo ci = dao.findById(user.getCompanyinfo().getId());
+		
+		fd.setTime(date);
+		fd.setDescription(ds);
+		fd.setReviewer(0);
+		fd.setCompanyInfo(ci);
+		
+		System.out.println(fd.getDescription());
+		System.out.println(fd.getCompanyInfo().getId());
+		
+		IFeedbackDao dao2 = new FeedbackDaoImpl();
+		dao2.add(fd);
+		
+		return mapping.findForward("feedback");
+	}
+	
+	public ActionForward companysearch(ActionMapping mapping, ActionForm form,
+			HttpServletRequest req, HttpServletResponse resp)
+			throws Exception {
+		CompanyInfo ci = (CompanyInfo) req.getSession().getAttribute("companginfo");
+		SimpleDateFormat simFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date d1 = simFormat.parse(req.getParameter("lo"));
+		Date d2 = simFormat.parse(req.getParameter("mo"));
+		ICompanyInfoDao dao = new CompanyInfoDaoImpl();
+		Collection<SMEassessment> sm = dao.findByTime(d1, d2, ci.getId() );
+		
+		req.getSession().setAttribute("sm", sm);
+		
+		return mapping.findForward("companysearch");
+	}
+	
+}

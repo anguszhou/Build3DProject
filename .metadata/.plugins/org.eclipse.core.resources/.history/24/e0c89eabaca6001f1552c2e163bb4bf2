@@ -1,0 +1,19 @@
+package xjtu.citi.impl;
+
+import java.util.Collection;
+
+import xjtu.citi.dao.ISMEassessmentDao;
+
+public class SMEassessmentDaoImpl implements ISMEassessmentDao {
+
+	public Collection calSMEassess() {
+		
+		return null;
+	}
+
+	public Collection findCoreComp() {
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,124 @@
+package xjtu.citi.impl;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import xjtu.citi.dao.ICompanyInfoDao;
+import xjtu.citi.entity.Account;
+import xjtu.citi.entity.CompanyInfo;
+import xjtu.citi.entity.Parameter;
+import xjtu.citi.entity.SMEassessment;
+import xjtu.citi.entity.TransInfo;
+import xjtu.citi.entity.WarnParameter;
+import xjtu.citi.entity.node;
+import xjtu.citi.util.HibernateUtils;
+
+public class DWRSMEAccess
+{
+	//根据企业id号，查找出该企业最新SME信息
+	public node findById(int id)
+	{
+		Session   session = null;
+		Transaction  tran = null;
+		session = HibernateUtils.getSession();
+		tran = session.beginTransaction();
+		
+		SMEassessment sm = (SMEassessment) session.createQuery("from SMEassessment  p1 left join fetch p1.companyinfo where p1.time=(select max(p2.time) from SMEassessment p2) and p1.companyinfo.id =:id").setInteger("id", id).uniqueResult();
+		node tp = new node();
+		tp.setId(sm.getCompanyinfo().getId());
+		tp.setName(sm.getCompanyinfo().getName());
+		tp.setScore(sm.getScore());
+		return tp;		
+	}
+	
+	//根据企业ID号查找出与该企业有资金联系的企业群
+	public Collection<node> findBySME(int id)
+	{
+		Session   session = null;
+		Transaction  tran = null;
+		session = HibernateUtils.getSession();
+		tran = session.beginTransaction();
+		
+		Parameter pp = new Parameter();
+		WarnParameter wp = new WarnParameter();
+		Collection<Account> account = null ;
+		Collection<TransInfo> info = null;
+		Collection<CompanyInfo> comp = null;
+
+		Collection<SMEassessment> pre = session.createQuery("from SMEassessment p1 where p1.time=(select max(p2.time) from SMEassessment p2)").list();
+		account = session.createQuery("from Account").list();
+		info = session.createQuery("from TransInfo").list();
+		comp = session.createQuery("from CompanyInfo").list();
+		
+		int num = comp.size();
+		double transinfo[][]=new double[num][num];
+		double score[] = new double [num];
+		Collection<node> sme = new HashSet();
+		
+		//获得转帐信息的数组transinfo[][];
+		for (Iterator ff = info.iterator(); ff.hasNext();)
+		{
+			TransInfo tt = (TransInfo) ff.next();
+			int in = 0,out = 0 ;
+			for (Iterator aa = account.iterator(); aa.hasNext();)
+			{
+				Account acc = (Account) aa.next();
+				if(acc.getAccount().equals(tt.getAccountIn()))
+				{
+					in = acc.getCompanyinfo().getId();
+				}				
+			}
+			for (Iterator aa = account.iterator(); aa.hasNext();)
+			{
+				Account acc = (Account) aa.next();
+				if(acc.getAccount().equals(tt.getAccountOut()))
+				{
+					out = acc.getCompanyinfo().getId();
+				}
+			}
+			transinfo[out-1][in-1] = tt.getAmount();
+			System.out.println(transinfo[out-1][in-1]+" "+tt.getId()+" "+out+" "+in);
+		}
+		
+		//寻找与企业i有资金联系的企业群
+		ICompanyInfoDao dao = new CompanyInfoDaoImpl();
+		for (int i = 0; i < num; i++)
+		{
+			if(transinfo[id-1][i] != 0 || transinfo[i][id-1] != 0)
+			{
+				node tp = new node();
+				tp.setId(i+1);
+				tp.setName(dao.findById(i+1).getName());
+				if(findById(i+1)==null)
+				{
+					tp.setScore(-1);
+				}else
+				{
+					tp.setScore(findById(i+1).getScore());	
+				}				
+				System.out.println(tp.getId()+" "+tp.getName()+" "+tp.getScore());		
+				sme.add(tp);
+			}
+			
+		}
+		node []smeinfo = new node[sme.size()];
+		int i=0;
+		for (Iterator iterator = sme.iterator(); iterator.hasNext();)
+		{
+			node node = (node) iterator.next();
+			smeinfo[i]= node;
+			i++;
+		}
+		return sme;
+	}
+	
+	public static void main(String[] args)
+	{
+	    DWRSMEAccess dd = new DWRSMEAccess();
+		System.out.println(dd.findBySME(2));
+	}
+}
